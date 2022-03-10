@@ -18,5 +18,13 @@
     <ClCompile Include="Training1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="cow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="cow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

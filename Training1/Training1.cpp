@@ -3,6 +3,7 @@
 
 #include <iostream>
 //#include <cstdint>  //Including a C library always has lowercase C
+#include "cow.h"
 
 #define CAPACITY 5000 //This is a macro
 #define DEBUG //This is a macro
@@ -17,6 +18,7 @@ void TypeCasting();
 void CalculateAverageOfArray(int value[5]);
 void Structures();
 void Classes();
+void Pointers();
 
 int main()
 {
@@ -53,6 +55,10 @@ int main()
     std::cout << "\n";
 
     Classes();
+
+    std::cout << "\n";
+
+    Pointers();
 }
 
 void PrintUsername() {
@@ -205,43 +211,43 @@ void Structures() {
     std::cout << my_cow.name << " is " << my_cow.age << " years old." << std::endl;
 }
 
-class cow1 {
-public:
-    cow1(std::string name_i, int age_i, unsigned char purpose_i) {
-        name = name_i;
-        age = age_i;
-        purpoe = purpose_i;
-    }
-
-    std::string get_name() {
-        return name;
-    }
-
-    int get_age() {
-        return age;
-    }
-
-    unsigned char get_purpose() {
-        return purpoe;
-    }
-
-    void set_name(std::string new_name) {
-        name = new_name;
-    }
-
-    void set_age(int new_age) {
-        age = new_age;
-    }
-
-    void set_purpoe(unsigned char new_purpose) {
-        purpoe = new_purpose;
-    }
-
-private:
-    std::string name;
-    int age;
-    unsigned char purpoe;
-};
+//class cow1 {
+//public:
+//    cow1(std::string name_i, int age_i, unsigned char purpose_i) {
+//        name = name_i;
+//        age = age_i;
+//        purpoe = purpose_i;
+//    }
+//
+//    std::string get_name() {
+//        return name;
+//    }
+//
+//    int get_age() {
+//        return age;
+//    }
+//
+//    unsigned char get_purpose() {
+//        return purpoe;
+//    }
+//
+//    void set_name(std::string new_name) {
+//        name = new_name;
+//    }
+//
+//    void set_age(int new_age) {
+//        age = new_age;
+//    }
+//
+//    void set_purpoe(unsigned char new_purpose) {
+//        purpoe = new_purpose;
+//    }
+//
+//private:
+//    std::string name;
+//    int age;
+//    unsigned char purpoe;
+//};
 
 void Classes() {
     cow1 my_cow("Hildy", 7, pet);
@@ -256,5 +262,9 @@ void Classes() {
 
     std::cout << my_cow.get_name() << " is a type-" << (int)my_cow.get_purpose() << " cow." << std::endl;
     std::cout << my_cow.get_name() << " is " << my_cow.get_age() << " years old." << std::endl;
+}
+
+void Pointers() {
+
 }
 
