@@ -2,6 +2,7 @@
 //
 
 #include <iostream>
+#include <vector>
 //#include <cstdint>  //Including a C library always has lowercase C
 #include "cow.h"
 
@@ -19,6 +20,7 @@ void CalculateAverageOfArray(int value[5]);
 void Structures();
 void Classes();
 void Pointers();
+void Vectors();
 
 int main()
 {
@@ -59,6 +61,10 @@ int main()
     std::cout << "\n";
 
     Pointers();
+
+    std::cout << "\n";
+
+    Vectors();
 }
 
 void PrintUsername() {
@@ -280,5 +286,34 @@ void Pointers() {
     std::cout << (*my_cow).get_name() << " is a type-" << (int)my_cow->get_purpose() << " cow." << std::endl;
     std::cout << my_cow->get_name() << " is " << my_cow->get_age() << " years old." << std::endl;
     delete my_cow;
+}
+
+void Vectors() {
+    std::vector<int> primes;
+
+    std::cout << "The vector has " << primes.size() << " elements." << std::endl;
+
+    primes.push_back(2);
+    primes.push_back(3);
+    primes.push_back(5);
+    primes.push_back(7);
+    primes.push_back(11);
+    std::cout << "The vector has " << primes.size() << " elements." << std::endl;
+
+    std::cout << "The element at index 2 is " << primes[2] << std::endl;
+    primes[2] = 13;
+    std::cout << "The element at index 2 is " << primes[2] << std::endl;
+    std::cout << std::endl;
+
+    std::vector<cow1> cattle;
+    cattle.push_back(cow1("Betty", 6, meat));
+    cattle.push_back(cow1("Libby", 4, hide));
+    cattle.push_back(cow1("Trudy", 5, pet));
+    cattle.push_back(cow1("Betsy", 2, dairy));
+
+    std::cout << "The first cow is " << cattle.begin()->get_name() << std::endl;
+    std::cout << "At index 1 we have " << cattle[1].get_name() << std::endl;
+    std::cout << "Next to last is " << prev(cattle.end(), 2)->get_name() << std::endl;
+    std::cout << "The last cow is " << (cattle.end() - 1)->get_name() << std::endl;
 }
 
