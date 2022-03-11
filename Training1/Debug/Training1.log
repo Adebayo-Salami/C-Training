@@ -1,6 +1,8 @@
-﻿  Training1.cpp
-C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\Training1.cpp(117,46): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\Training1.cpp(164,11): warning C4244: '=': conversion from 'float' to 'int32_t', possible loss of data
-C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\Training1.cpp(175,32): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\Training1.cpp(181,25): warning C4305: 'initializing': truncation from 'double' to 'float'
+﻿  Course.cpp
+  Training1.cpp
+C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\Training1.cpp(125,46): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\Training1.cpp(172,11): warning C4244: '=': conversion from 'float' to 'int32_t', possible loss of data
+C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\Training1.cpp(183,32): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\Training1.cpp(189,25): warning C4305: 'initializing': truncation from 'double' to 'float'
+  Generating Code...
   Training1.vcxproj -> C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Debug\Training1.exe

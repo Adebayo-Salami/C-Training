@@ -4,11 +4,12 @@
 
 class Course {
 public:
-	Course(int id_i, std::string name_i, int32_t credits_i);
+	Course(int id_i, std::string name_i, unsigned char credits_i);
 	std::string get_name();
+	int get_credits();
 
 private:
 	int id;
 	std::string name;
-	int32_t credits;
+	int credits;
 };

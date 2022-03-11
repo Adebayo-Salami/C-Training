@@ -5,6 +5,9 @@
 #include <vector>
 //#include <cstdint>  //Including a C library always has lowercase C
 #include "cow.h"
+#include "Student.h"
+#include "Course.h"
+#include "Grade.h"
 
 #define CAPACITY 5000 //This is a macro
 #define DEBUG //This is a macro
@@ -21,6 +24,7 @@ void Structures();
 void Classes();
 void Pointers();
 void Vectors();
+void CreateClassesion();
 
 int main()
 {
@@ -65,6 +69,10 @@ int main()
     std::cout << "\n";
 
     Vectors();
+
+    std::cout << "\n";
+
+    CreateClassesion();
 }
 
 void PrintUsername() {
@@ -317,3 +325,13 @@ void Vectors() {
     std::cout << "The last cow is " << (cattle.end() - 1)->get_name() << std::endl;
 }
 
+void CreateClassesion() {
+    Student my_student(1, "Hilda Jones");
+    Course my_course(7, "Physics 101", 4);
+    Grade my_grade(1, 7, 'B');
+
+    std::cout << "Student: " << my_student.get_name() << std::endl;
+    std::cout << "Course: " << my_course.get_name() << std::endl;
+    std::cout << "Credits: " << my_course.get_credits() << std::endl;
+    std::cout << "Grade: " << my_grade.get_grade() << std::endl;
+}

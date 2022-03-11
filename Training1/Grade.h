@@ -12,11 +12,11 @@ enum GradeType {
 
 class Grade {
 public:
-	Grade(int student_id_i, int course_id_i, GradeType grade_i);
-	unsigned char get_grade();
+	Grade(int student_id_i, int course_id_i, char grade_i);
+	char get_grade();
 
 private:
 	int student_id;
 	int coure_id;
-	unsigned char grade;
+	char grade;
 };
