@@ -16,3 +16,8 @@ int Course::get_credits()
 {
 	return credits;
 }
+
+int Course::get_id()
+{
+	return id;
+}

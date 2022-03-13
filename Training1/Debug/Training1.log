@@ -1,6 +1,8 @@
 ﻿  Training1.cpp
-C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\Training1.cpp(130,46): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\Training1.cpp(177,11): warning C4244: '=': conversion from 'float' to 'int32_t', possible loss of data
-C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\Training1.cpp(188,32): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\Training1.cpp(194,25): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\Training1.cpp(149,46): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\Training1.cpp(196,11): warning C4244: '=': conversion from 'float' to 'int32_t', possible loss of data
+C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\Training1.cpp(207,32): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\Training1.cpp(213,25): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\Training1.cpp(431,16): warning C4018: '<': signed/unsigned mismatch
+C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\Training1.cpp(440,23): warning C4018: '<': signed/unsigned mismatch
   Training1.vcxproj -> C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Debug\Training1.exe

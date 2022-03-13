@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
 //#include <cstdint>  //Including a C library always has lowercase C
 #include "cow.h"
 #include "Student.h"
@@ -26,6 +27,9 @@ void Pointers();
 void Vectors();
 void CreateClassesion();
 void IfStatements();
+void WhileLoops();
+void ForLoops();
+void CalculateGPA(std::vector<Student> students, std::vector<Course> courses, std::vector<Grade> grades);
 
 int main()
 {
@@ -78,6 +82,21 @@ int main()
     std::cout << "\n";
 
     IfStatements();
+
+    std::cout << "\n";
+
+    WhileLoops();
+
+    std::cout << "\n";
+
+    ForLoops();
+
+    std::cout << "\n";
+
+    std::vector<Student> students = { Student(1, "George P. Burdell"), Student(2, "Nancy Rhodes") };
+    std::vector<Course> courses = { Course(1, "Algenra", 5), Course(2, "Physics", 4), Course(3, "English", 3), Course(4, "Economics", 4) };
+    std::vector<Grade> grades = { Grade(1, 1, 'B'), Grade(1, 2, 'A'), Grade(1, 3, 'C'), Grade(2, 1, 'A'), Grade(2, 2, 'A'), Grade(2, 4, 'B') };
+    CalculateGPA(students, courses, grades);
 }
 
 void PrintUsername() {
@@ -284,8 +303,8 @@ void Classes() {
 }
 
 int a = 37;
-int* ptr;
-cow1* my_cow;
+int *ptr;
+cow1 *my_cow;
 
 void Pointers() {
     ptr = &a;
@@ -362,5 +381,120 @@ void IfStatements() {
 }
 
 void SwitchStatement() {
+    float operand_1, operand_2, result;
+    char operation;
 
+    std::cout << "Enter Operand 1: " << std::endl;
+    std::cin >> operand_1;
+    std::cout << "Enter Operand 2: " << std::endl;
+    std::cin >> operand_2;
+    std::cout << std::endl << "Choose peration: = - * / " << std::endl;
+    std::cin >> operation;
+
+    switch (operation) {
+    case '+':
+        result = operand_1 + operand_2;
+        break;
+    case '-':
+        result = operand_1 - operand_2;
+        break;
+    case '*':
+        result = operand_1 * operand_2;
+        break;
+    case '/':
+        result = operand_1 / operand_2;
+        break;
+    default:
+        result = 0;
+        break;
+    }
+
+    std::cout << "The result is " << result << std::endl;
+}
+
+void WhileLoops() {
+    std::vector<int> numbers = { 12,25,31,47,58 };
+
+    //std::vector<int>::iterator ptr = numbers.begin();
+    auto ptr = numbers.begin();
+    while (ptr != numbers.end())
+    {
+        std::cout << *ptr << " ";
+        ptr = next(ptr, 1);
+    }
+    std::cout << std::endl;
+
+    int i = 0;
+    do {
+        std::cout << numbers[i] << " ";
+        i++;
+    } while (i < numbers.size());
+    std::cout << std::endl;
+}
+
+void ForLoops() {
+    std::vector<int> numbers = { 12,25,31,47,58 };
+    float average;
+
+    average = 0.0f;
+    for (int i = 0; i < numbers.size(); i++)
+        average += numbers[i];
+    average /= numbers.size();
+    std::cout << "Average: " << average << std::endl;
+
+    average = 0.0f;
+    for (auto x : numbers)
+        average += x;
+    average /= numbers.size();
+    std::cout << "Average: " << average << std::endl;
+}
+
+void CalculateGPA(std::vector<Student> students, std::vector<Course> courses, std::vector<Grade> grades) {
+    int id;
+    float GPA = 0.0f;
+begin:
+    std::cout << "Enter Student ID" << std::endl;
+    std::cin >> id;
+    Student* student = nullptr;
+    for (auto& stud : students)
+        if (stud.get_id() == id)
+            student = &stud;
+
+    if (student == nullptr) {
+        std::cout << "No Student with this ID exists";
+        return;
+    }
+    else
+        std::cout << "Calculating GPA for Student " << student->get_name() << std::endl;
+    std::string student_name = student->get_name();
+    student = nullptr;
+
+    //Get All Students Grades
+    std::vector<Grade> studentGrades;
+    for (auto& grade : grades)
+        if (grade.get_studentId() == id)
+            studentGrades.push_back(grade);
+
+    //Get All Grade Courses
+    std::vector<Course> studentCourses;
+    for (auto& course : courses)
+        if (std::any_of(studentGrades.begin(), studentGrades.end(), [&course](Grade& gr) {return gr.get_courseId() == course.get_id(); }))
+            studentCourses.push_back(course);
+
+    //Calculate GPA  GPA = TotalPoints / Total Credits
+    float totalPoints = 0.0f;
+    float totalCredits = 0.0f;
+    for (auto& course : studentCourses) {
+
+    }
+
+    GPA = totalPoints / totalCredits;
+    std::cout << "The GPA for " << student_name << " is " << GPA << std::endl;
+    std::cout << "Do you want to go again? Type Y for Yes and any other key for no" << std::endl;;
+    char reply;
+    std::cin >> reply;
+    if (reply == 'Y' || reply == 'y')
+        goto begin;
+    else
+        std::cout << "Thanks for stopping by. Byeee" << std::endl;
 }

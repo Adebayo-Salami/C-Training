@@ -10,3 +10,8 @@ std::string Student::get_name()
 {
 	return name;
 }
+
+int Student::get_id()
+{
+	return id;
+}
