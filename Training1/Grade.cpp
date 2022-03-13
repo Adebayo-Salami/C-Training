@@ -22,18 +22,18 @@ int Grade::get_courseId()
 	return course_id;
 }
 
-int Grade::get_grade_value()
+float Grade::get_grade_value()
 {
 	switch(grade) {
 	case 'A':
-		return 4;
+		return 4.0f;
 	case 'B':
-		return 3;
+		return 3.0f;
 	case 'C':
-		return 2;
+		return 2.0f;
 	case 'D':
-		return 1;
+		return 1.0f;
 	default:
-		return 0;
+		return 0.0f;
 	}
 }

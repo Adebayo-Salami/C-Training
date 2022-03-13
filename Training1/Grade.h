@@ -16,7 +16,7 @@ public:
 	char get_grade();
 	int get_studentId();
 	int get_courseId();
-	int get_grade_value();
+	float get_grade_value();
 
 private:
 	int student_id;
