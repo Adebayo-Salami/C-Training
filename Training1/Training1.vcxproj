@@ -143,6 +143,7 @@
     <ClCompile Include="cow.cpp" />
     <ClCompile Include="Grade.cpp" />
     <ClCompile Include="Student.cpp" />
+    <ClCompile Include="StudentRecord.cpp" />
     <ClCompile Include="Training1.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -150,6 +151,7 @@
     <ClInclude Include="cow.h" />
     <ClInclude Include="Grade.h" />
     <ClInclude Include="Student.h" />
+    <ClInclude Include="StudentRecord.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
