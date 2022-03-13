@@ -25,6 +25,7 @@ void Classes();
 void Pointers();
 void Vectors();
 void CreateClassesion();
+void IfStatements();
 
 int main()
 {
@@ -73,6 +74,10 @@ int main()
     std::cout << "\n";
 
     CreateClassesion();
+
+    std::cout << "\n";
+
+    IfStatements();
 }
 
 void PrintUsername() {
@@ -334,4 +339,28 @@ void CreateClassesion() {
     std::cout << "Course: " << my_course.get_name() << std::endl;
     std::cout << "Credits: " << my_course.get_credits() << std::endl;
     std::cout << "Grade: " << my_grade.get_grade() << std::endl;
+}
+
+void IfStatements() {
+    int a = 1023;
+    bool flag = false;
+    char letter = 'd';
+
+    if (a > 1000)
+        std::cout << "Warning: a is over 1000" << std::endl;
+
+    if (a % 2)
+        std::cout << "a is an odd number." << std::endl;
+    else
+        std::cout << "a is an even number. " << std::endl;
+
+    std::cout << "he letter " << letter << " is ";
+    if (letter != 'a' && letter != 'e' && letter != 'i' && letter != 'o' && letter != 'u')
+        std::cout << " not ";
+
+    std::cout << "a vowel." << std::endl;
+}
+
+void SwitchStatement() {
+
 }
