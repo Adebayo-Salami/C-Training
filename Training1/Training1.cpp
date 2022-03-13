@@ -30,6 +30,7 @@ void IfStatements();
 void WhileLoops();
 void ForLoops();
 void CalculateGPA(std::vector<Student> students, std::vector<Course> courses, std::vector<Grade> grades);
+void CalculateGPASolution(std::vector<Student> students, std::vector<Course> courses, std::vector<Grade> grades);
 
 int main()
 {
@@ -97,6 +98,10 @@ int main()
     std::vector<Course> courses = { Course(1, "Algenra", 5), Course(2, "Physics", 4), Course(3, "English", 3), Course(4, "Economics", 4) };
     std::vector<Grade> grades = { Grade(1, 1, 'B'), Grade(1, 2, 'A'), Grade(1, 3, 'C'), Grade(2, 1, 'A'), Grade(2, 2, 'A'), Grade(2, 4, 'B') };
     CalculateGPA(students, courses, grades);
+
+    std::cout << "\n";
+
+    CalculateGPASolution(students, courses, grades);
 }
 
 void PrintUsername() {
@@ -485,7 +490,18 @@ begin:
     float totalPoints = 0.0f;
     float totalCredits = 0.0f;
     for (auto& course : studentCourses) {
-
+        int courseId = course.get_id();
+        auto courseCredit = course.get_credits();
+        int courseGrade = 0;
+        //std::find(studentGrades.begin(), studentGrades.end(), [&courseGrade, &courseId](Grade& grade) {   //Didn't work, need to find out why
+        //    if (grade.get_courseId() == courseId)
+        //        courseGrade += grade.get_grade_value();
+        //});
+        for (auto& grade : studentGrades)
+            if (grade.get_courseId() == courseId)
+                courseGrade += grade.get_grade_value();
+        totalPoints += (courseGrade * courseCredit);
+        totalCredits += courseCredit;
     }
 
     GPA = totalPoints / totalCredits;
@@ -497,4 +513,8 @@ begin:
         goto begin;
     else
         std::cout << "Thanks for stopping by. Byeee" << std::endl;
+}
+
+void CalculateGPASolution(std::vector<Student> students, std::vector<Course> courses, std::vector<Grade> grades) {
+
 }
