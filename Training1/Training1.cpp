@@ -34,6 +34,7 @@ void CalculateGPA(std::vector<Student> students, std::vector<Course> courses, st
 void CalculateGPASolution(std::vector<Student> students, std::vector<Course> courses, std::vector<Grade> grades);
 void Initialize(std::vector<Student> students, std::vector<Course> courses, std::vector<Grade> grades);
 void CalculateGPASolution_CleanUp();
+void FunctionParameters();
 
 int main()
 {
@@ -41,75 +42,79 @@ int main()
 
     std::cout << "\n";
 
-    TypeInference();
+    //TypeInference();
 
     std::cout << "\n";
 
-    PreprocessorDirectives();
+    //PreprocessorDirectives();
 
     std::cout << "\n";
 
-    Arrays();
+    //Arrays();
     
     std::cout << "\n";
 
-    Stringss();
+    //Stringss();
 
     std::cout << "\n";
 
-    TypeCasting();
+    //TypeCasting();
 
     std::cout << "\n";
 
-    CalculateAverageOfArray(new int[]{ 1, 23, 32, 24, 337 });
+    //CalculateAverageOfArray(new int[]{ 1, 23, 32, 24, 337 });
 
     std::cout << "\n";
 
-    Structures();
+    //Structures();
 
     std::cout << "\n";
 
-    Classes();
+    //Classes();
 
     std::cout << "\n";
 
-    Pointers();
+    //Pointers();
 
     std::cout << "\n";
 
-    Vectors();
+    //Vectors();
 
     std::cout << "\n";
 
-    CreateClassesion();
+    //CreateClassesion();
 
     std::cout << "\n";
 
-    IfStatements();
+    //IfStatements();
 
     std::cout << "\n";
 
-    WhileLoops();
+    //WhileLoops();
 
     std::cout << "\n";
 
-    ForLoops();
+    //ForLoops();
 
     std::cout << "\n";
 
     std::vector<Student> students = { Student(1, "George P. Burdell"), Student(2, "Nancy Rhodes") };
     std::vector<Course> courses = { Course(1, "Algenra", 5), Course(2, "Physics", 4), Course(3, "English", 3), Course(4, "Economics", 4) };
     std::vector<Grade> grades = { Grade(1, 1, 'B'), Grade(1, 2, 'A'), Grade(1, 3, 'C'), Grade(2, 1, 'A'), Grade(2, 2, 'A'), Grade(2, 4, 'B') };
-    CalculateGPA(students, courses, grades);
+    //CalculateGPA(students, courses, grades);
 
     std::cout << "\n";
 
-    CalculateGPASolution(students, courses, grades);
+    //CalculateGPASolution(students, courses, grades);
 
     std::cout << "\n";
 
-    Initialize(students, courses, grades);
-    CalculateGPASolution_CleanUp();
+    //Initialize(students, courses, grades);
+    //CalculateGPASolution_CleanUp();
+
+    std::cout << "\n";
+
+    FunctionParameters();
 }
 
 void PrintUsername() {
@@ -588,5 +593,15 @@ void CalculateGPASolution_CleanUp() {
 
     std::string student_str = SR.get_student_name(id);
     std::cout << "The GPA for " << student_str << " is " << SR.get_GPA(id) << std::endl;
+}
+
+void FunctionParameters() {
+    int a = 9, b;
+
+    std::cout << "a = " << a << ", b = " << b << std::endl;
+    //swap
+    std::cout << "a = " << a << ", b = " << b << std::endl;
+    //swap
+    std::cout << "a = " << a << ", b = " << b << std::endl;
 }
 

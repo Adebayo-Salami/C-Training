@@ -1,13 +1,11 @@
-﻿  Grade.cpp
-  Training1.cpp
-C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\Training1.cpp(154,46): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\Training1.cpp(201,11): warning C4244: '=': conversion from 'float' to 'int32_t', possible loss of data
-C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\Training1.cpp(212,32): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\Training1.cpp(218,25): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\Training1.cpp(436,16): warning C4018: '<': signed/unsigned mismatch
-C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\Training1.cpp(445,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\Training1.cpp(502,55): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
-C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\Training1.cpp(548,22): warning C4018: '<': signed/unsigned mismatch
-C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\Training1.cpp(557,14): warning C4018: '<': signed/unsigned mismatch
-  Generating Code...
-  Training1.vcxproj -> C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Debug\Training1.exe
+﻿  Training1.cpp
+C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\Training1.cpp(167,46): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\Training1.cpp(214,11): warning C4244: '=': conversion from 'float' to 'int32_t', possible loss of data
+C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\Training1.cpp(225,32): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\Training1.cpp(231,25): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\Training1.cpp(449,16): warning C4018: '<': signed/unsigned mismatch
+C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\Training1.cpp(458,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\Training1.cpp(515,55): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\Training1.cpp(561,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\Training1.cpp(570,14): warning C4018: '<': signed/unsigned mismatch
+C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\Training1.cpp(601): error C4700: uninitialized local variable 'b' used
