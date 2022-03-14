@@ -9,6 +9,7 @@
 #include "Student.h"
 #include "Course.h"
 #include "Grade.h"
+#include "StudentRecord.h"
 
 #define CAPACITY 5000 //This is a macro
 #define DEBUG //This is a macro
@@ -31,6 +32,8 @@ void WhileLoops();
 void ForLoops();
 void CalculateGPA(std::vector<Student> students, std::vector<Course> courses, std::vector<Grade> grades);
 void CalculateGPASolution(std::vector<Student> students, std::vector<Course> courses, std::vector<Grade> grades);
+void Initialize(std::vector<Student> students, std::vector<Course> courses, std::vector<Grade> grades);
+void CalculateGPASolution_CleanUp();
 
 int main()
 {
@@ -102,6 +105,11 @@ int main()
     std::cout << "\n";
 
     CalculateGPASolution(students, courses, grades);
+
+    std::cout << "\n";
+
+    Initialize(students, courses, grades);
+    CalculateGPASolution_CleanUp();
 }
 
 void PrintUsername() {
@@ -559,3 +567,26 @@ void CalculateGPASolution(std::vector<Student> students, std::vector<Course> cou
     student_str = students[i].get_name();
     std::cout << "The GPA for " << student_str << " is " << GPA << std::endl;
 }
+
+StudentRecord SR;
+void Initialize(std::vector<Student> students, std::vector<Course> courses, std::vector<Grade> grades) {
+    for (auto& student : students)
+        SR.add_student(student.get_id(), student.get_name());
+
+    for (auto& course : courses)
+        SR.add_course(course.get_id(), course.get_name(), course.get_credits());
+
+    for (auto& grade : grades)
+        SR.add_grade(grade.get_studentId(), grade.get_courseId(), grade.get_grade());
+}
+
+void CalculateGPASolution_CleanUp() {
+    int id;
+
+    std::cout << "Enter a student ID: ";
+    std::cin >> id;
+
+    std::string student_str = SR.get_student_name(id);
+    std::cout << "The GPA for " << student_str << " is " << SR.get_GPA(id) << std::endl;
+}
+
