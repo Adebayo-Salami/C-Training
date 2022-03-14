@@ -23,6 +23,31 @@ float StudentRecord::get_num_grade(char grade)
 	return num_grd;
 }
 
+std::vector<Grade> StudentRecord::get_student_grades(int sid)
+{
+    std::vector<Grade> results;
+    std::copy_if(grades.begin(), grades.end(), std::back_inserter(results), [&sid](Grade& grade) {
+        return grade.get_studentId() == sid;
+    });
+    return results;
+}
+
+Course StudentRecord::get_grade_course(int cid)
+{
+    auto course = std::find_if(courses.begin(), courses.end(), [&cid](Course& cours) { return cours.get_id() == cid; });
+    if (course != courses.end()) {
+        return *course;
+    }
+    else
+        return Course(0, "N/A", F);
+}
+
+bool StudentRecord::check_if_student_exist(int sid)
+{
+    auto student = std::find_if(students.begin(), students.end(), [&sid](Student& stud) { return stud.get_id() == sid; });
+    return student != students.end();
+}
+
 void StudentRecord::add_student(int sid, std::string cname)
 {
 	students.push_back(Student(sid, cname));
@@ -36,6 +61,22 @@ void StudentRecord::add_course(int cid, std::string cname, unsigned char ccredit
 void StudentRecord::add_grade(int sid, int cid, char grade)
 {
 	grades.push_back(Grade(sid, cid, grade));
+}
+
+void StudentRecord::print_student_report_card(int sid)
+{
+    auto student_name = get_student_name(sid);
+    std::cout << "Loading Report Card For student " << student_name << std::endl;
+    auto student_grades = get_student_grades(sid);
+    if (student_grades.size() <= 0)
+        std::cout << " Student has no grade record " << std::endl;
+    else
+        for (auto& grd : student_grades)
+            std::cout << student_name << " got " << grd.get_grade() << " in course " << get_grade_course(grd.get_courseId()).get_name() << std::endl;
+}
+
+void StudentRecord::report_card_solution(int sid)
+{
 }
 
 std::string StudentRecord::get_student_name(int sid)

@@ -1,11 +1,4 @@
-﻿  Training1.cpp
-C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\Training1.cpp(167,46): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\Training1.cpp(214,11): warning C4244: '=': conversion from 'float' to 'int32_t', possible loss of data
-C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\Training1.cpp(225,32): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\Training1.cpp(231,25): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\Training1.cpp(449,16): warning C4018: '<': signed/unsigned mismatch
-C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\Training1.cpp(458,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\Training1.cpp(515,55): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
-C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\Training1.cpp(561,22): warning C4018: '<': signed/unsigned mismatch
-C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\Training1.cpp(570,14): warning C4018: '<': signed/unsigned mismatch
-C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\Training1.cpp(601): error C4700: uninitialized local variable 'b' used
+﻿  StudentRecord.cpp
+C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\StudentRecord.cpp(82,14): warning C4018: '<': signed/unsigned mismatch
+C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Training1\StudentRecord.cpp(90,14): warning C4018: '<': signed/unsigned mismatch
+  Training1.vcxproj -> C:\Users\osalami\Documents\Trainings\C++ Training\CPusPlusTraining\Debug\Training1.exe

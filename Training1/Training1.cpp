@@ -35,6 +35,7 @@ void CalculateGPASolution(std::vector<Student> students, std::vector<Course> cou
 void Initialize(std::vector<Student> students, std::vector<Course> courses, std::vector<Grade> grades);
 void CalculateGPASolution_CleanUp();
 void FunctionParameters();
+void PrintStudentReportCard();
 
 int main()
 {
@@ -99,7 +100,7 @@ int main()
     std::cout << "\n";
 
     std::vector<Student> students = { Student(1, "George P. Burdell"), Student(2, "Nancy Rhodes") };
-    std::vector<Course> courses = { Course(1, "Algenra", 5), Course(2, "Physics", 4), Course(3, "English", 3), Course(4, "Economics", 4) };
+    std::vector<Course> courses = { Course(1, "Algebra", 5), Course(2, "Physics", 4), Course(3, "English", 3), Course(4, "Economics", 4) };
     std::vector<Grade> grades = { Grade(1, 1, 'B'), Grade(1, 2, 'A'), Grade(1, 3, 'C'), Grade(2, 1, 'A'), Grade(2, 2, 'A'), Grade(2, 4, 'B') };
     //CalculateGPA(students, courses, grades);
 
@@ -114,7 +115,12 @@ int main()
 
     std::cout << "\n";
 
-    FunctionParameters();
+    //FunctionParameters();
+
+    std::cout << "\n";
+
+    Initialize(students, courses, grades);
+    PrintStudentReportCard();
 }
 
 void PrintUsername() {
@@ -595,13 +601,45 @@ void CalculateGPASolution_CleanUp() {
     std::cout << "The GPA for " << student_str << " is " << SR.get_GPA(id) << std::endl;
 }
 
+//Takes arguments by value
+int square(int x) {
+    x = x * x;
+    return x;
+}
+
+//Takes arguments by address
+void swap(int* x, int* y) {
+    int temp = *x;
+    *x = *y;
+    *y = temp;
+}
+
+//Takes arguments by reference
+void swap(int& x, int& y) {
+    int temp = x;
+    x = y;
+    y = temp;
+}
+
 void FunctionParameters() {
     int a = 9, b;
+    b = square(a);
 
     std::cout << "a = " << a << ", b = " << b << std::endl;
-    //swap
+    swap(&a, &b);   //swap
     std::cout << "a = " << a << ", b = " << b << std::endl;
-    //swap
+    swap(a, b);   //swap
     std::cout << "a = " << a << ", b = " << b << std::endl;
 }
 
+void PrintStudentReportCard() {
+    int id;
+
+    std::cout << "Enter a student ID: ";
+    std::cin >> id;
+
+    if (!SR.check_if_student_exist(id))
+        std::cout << "No Student with this ID exists. " << std::endl;
+    else
+        SR.print_student_report_card(id);
+}
