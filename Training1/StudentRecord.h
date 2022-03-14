@@ -15,6 +15,7 @@ private:
 	float get_num_grade(char);
 	std::vector<Grade> get_student_grades(int);
 	Course get_grade_course(int);
+	std::string get_course_name(int);
 
 public:
 	void add_student(int, std::string);

@@ -42,6 +42,14 @@ Course StudentRecord::get_grade_course(int cid)
         return Course(0, "N/A", F);
 }
 
+std::string StudentRecord::get_course_name(int cid)
+{
+    int j = 0;
+    while (j < courses.size() && courses[j].get_id() != cid)
+        j++;
+    return courses[j].get_name();
+}
+
 bool StudentRecord::check_if_student_exist(int sid)
 {
     auto student = std::find_if(students.begin(), students.end(), [&sid](Student& stud) { return stud.get_id() == sid; });
@@ -77,6 +85,16 @@ void StudentRecord::print_student_report_card(int sid)
 
 void StudentRecord::report_card_solution(int sid)
 {
+    float points = 0.0f, credits = 0.0f;
+    std::cout << std::endl << "Report Card for " << get_student_name(sid) << std::endl;
+    for(Grade& grd: grades)
+        if (grd.get_studentId() == sid) {
+            std::cout << get_course_name(grd.get_courseId()) << ": " << grd.get_grade() << std::endl;
+            unsigned char current_credits = get_course_credits(grd.get_courseId());
+            credits += current_credits;
+            points += get_num_grade(grd.get_grade()) * current_credits;
+        }
+    std::cout << " GPA: " << (points / credits) << std::endl;
 }
 
 std::string StudentRecord::get_student_name(int sid)
