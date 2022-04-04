@@ -10,6 +10,7 @@
 #include "Course.h"
 #include "Grade.h"
 #include "StudentRecord.h"
+#include <fstream>
 
 #define CAPACITY 5000 //This is a macro
 #define DEBUG //This is a macro
@@ -36,6 +37,8 @@ void Initialize(std::vector<Student> students, std::vector<Course> courses, std:
 void CalculateGPASolution_CleanUp();
 void FunctionParameters();
 void PrintStudentReportCard();
+void FileReading();
+void FileWriting();
 
 int main()
 {
@@ -119,8 +122,16 @@ int main()
 
     std::cout << "\n";
 
-    Initialize(students, courses, grades);
-    PrintStudentReportCard();
+    //Initialize(students, courses, grades);
+    //PrintStudentReportCard();
+
+    std::cout << "\n";
+
+    FileReading();
+
+    std::cout << "\n";
+
+    FileWriting();
 }
 
 void PrintUsername() {
@@ -642,4 +653,45 @@ void PrintStudentReportCard() {
         std::cout << "No Student with this ID exists. " << std::endl;
     else
         SR.print_student_report_card(id);
+}
+
+void FileReading() {
+    std::ifstream inFile;
+    std::string str;
+    int number;
+    char letter;
+
+    inFile.open("C:/Users/osalami/Documents/Trainings/C++ Training/CPusPlusTraining/people.txt");
+    if (inFile.fail())
+        std::cout << std::endl << " File not found!" << std::endl;
+    else{
+        while (!inFile.eof()) {
+            std::getline(inFile, str);
+            std::cout << str << ", ";
+            std::getline(inFile, str);
+            number = std::stoi(str);
+            std::cout << number << ", ";
+            std::getline(inFile, str);
+            letter = str[0];
+            std::cout << letter << std::endl;
+        }
+        inFile.close();
+    }
+}
+
+void FileWriting() {
+    std::ofstream outFile;
+    float a = 4.333f, b = 5.302f;
+
+    outFile.open("C:/Users/osalami/Documents/Trainings/C++ Training/CPusPlusTraining/calculations.txt");
+    if (outFile.fail())
+        std::cout << std::endl << " Could't open the file!" << std::endl;
+    else {
+        outFile << "a = " << a << std::endl;
+        outFile << "b = " << b<< std::endl;
+        outFile << "a + b =" << a + b << std::endl;
+        outFile << "a * b =" << a * b << std::endl;
+        outFile.close();
+        std::cout << " File written successfully!" << std::endl;
+    }
 }
