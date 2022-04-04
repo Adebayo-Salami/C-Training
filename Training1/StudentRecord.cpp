@@ -83,18 +83,21 @@ void StudentRecord::print_student_report_card(int sid)
             std::cout << student_name << " got " << grd.get_grade() << " in course " << get_grade_course(grd.get_courseId()).get_name() << std::endl;
 }
 
-void StudentRecord::report_card_solution(int sid)
+void StudentRecord::report_card_solution(int sid, std::ostream& stream)
 {
     float points = 0.0f, credits = 0.0f;
     std::cout << std::endl << "Report Card for " << get_student_name(sid) << std::endl;
+    stream << std::endl << "Report Card for " << get_student_name(sid) << std::endl;
     for(Grade& grd: grades)
         if (grd.get_studentId() == sid) {
             std::cout << get_course_name(grd.get_courseId()) << ": " << grd.get_grade() << std::endl;
+            stream << get_course_name(grd.get_courseId()) << ": " << grd.get_grade() << std::endl;
             unsigned char current_credits = get_course_credits(grd.get_courseId());
             credits += current_credits;
             points += get_num_grade(grd.get_grade()) * current_credits;
         }
     std::cout << " GPA: " << (points / credits) << std::endl;
+    stream << "GPA: " << (points / credits) << std::endl;
 }
 
 std::string StudentRecord::get_student_name(int sid)
@@ -125,4 +128,22 @@ float StudentRecord::get_GPA(int sid)
             points += get_num_grade(grd.get_grade()) * current_credits;
         }
     return points / credits;
+}
+
+void StudentRecord::report_file(std::ofstream &outFile)
+{
+    int sid;
+    outFile.open("C:/Users/osalami/Documents/Trainings/C++ Training/CPusPlusTraining/report.txt");
+    if (outFile.fail())
+        std::cout << std::endl << "Couldn't open the file!" << std::endl;
+    else {
+        outFile << "======================================" << std::endl;
+        for (auto& std : students) {
+            sid = std.get_id();
+            report_card_solution(sid, outFile);
+            outFile << "======================================" << std::endl;
+        }
+        outFile.close();
+        std::cout << "Created report.txt successfully";
+    }
 }

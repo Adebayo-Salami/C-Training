@@ -39,6 +39,8 @@ void FunctionParameters();
 void PrintStudentReportCard();
 void FileReading();
 void FileWriting();
+void StudentReportFile();
+void initialize(std::ifstream& inFile);
 
 int main()
 {
@@ -132,6 +134,10 @@ int main()
     std::cout << "\n";
 
     FileWriting();
+
+    std::cout << "\n";
+
+    StudentReportFile();
 }
 
 void PrintUsername() {
@@ -693,5 +699,77 @@ void FileWriting() {
         outFile << "a * b =" << a * b << std::endl;
         outFile.close();
         std::cout << " File written successfully!" << std::endl;
+    }
+}
+
+//StudentRecord SR;
+int id;
+std::ifstream inFile;
+std::ofstream outFile;
+void StudentReportFile() {
+    initialize(inFile);
+    SR.report_file(outFile);
+}
+
+void initialize(std::ifstream& inFile) {
+    std::string str, name;
+    int sid, cid;
+    unsigned char credits;
+    char grade;
+    int count = 0;
+
+    inFile.open("C:/Users/osalami/Documents/Trainings/C++ Training/CPusPlusTraining/students.txt");
+    if (inFile.fail())
+        std::cout << std::endl << "File students.txt not found!" << std::endl;
+    else {
+        while (!inFile.eof())
+        {
+            std::getline(inFile, str);
+            sid = std::stoi(str);
+            std::getline(inFile, name);
+            SR.add_student(sid, name);
+            count++;
+        }
+        inFile.close();
+        std::cout << "Found " << count << " students" << std::endl;
+    }
+
+    count = 0;
+    inFile.open("C:/Users/osalami/Documents/Trainings/C++ Training/CPusPlusTraining/courses.txt");
+    if (inFile.fail())
+        std::cout << std::endl << "File courses.txt not found!" << std::endl;
+    else {
+        while (!inFile.eof())
+        {
+            std::getline(inFile, str);
+            cid = std::stoi(str);
+            std::getline(inFile, name);
+            std::getline(inFile, str);
+            credits = std::stoi(str);
+            SR.add_course(cid, name, credits);
+            count++;
+        }
+        inFile.close();
+        std::cout << "Found " << count << " coures" << std::endl;
+    }
+
+    count = 0;
+    inFile.open("C:/Users/osalami/Documents/Trainings/C++ Training/CPusPlusTraining/grades.txt");
+    if (inFile.fail())
+        std::cout << std::endl << "File grades.txt not found!" << std::endl;
+    else {
+        while (!inFile.eof())
+        {
+            std::getline(inFile, str);
+            sid = std::stoi(str);
+            std::getline(inFile, str);
+            cid = std::stoi(str);
+            std::getline(inFile, str);
+            grade = str[0];
+            SR.add_grade(sid, cid, grade);
+            count++;
+        }
+        inFile.close();
+        std::cout << "Found " << count << " grades" << std::endl;
     }
 }
