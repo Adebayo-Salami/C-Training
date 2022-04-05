@@ -4,6 +4,7 @@ void TestVSWithExercise();
 void StatementsAndExpressions();
 void Pointers();
 void References();
+void PrimitiveArrays();
 
 int main()
 { 
@@ -22,6 +23,7 @@ int main()
     References();
 
     printf("\n");
+    PrimitiveArrays();
 
     return 0;
 }
@@ -96,4 +98,30 @@ void References() {
     printf("The value of x is %d\n", x);
     printf("The value of y is %d\n", y);
     printf("The value of z is %d\n", z);
+}
+ 
+void PrimitiveArrays() {
+    int ia[5];
+
+    ia[0] = 1;
+    *ia = 4;
+
+    int* ip = ia;
+
+    *ip = 2;
+    ++ip;   //Increments the pointer to the second element of the array
+    *ip = 3;
+    *(++ip) = 4;    //Increments a pointer and ue at the same time;
+
+    int arrayV[] = { 1,2,3,4,5 };
+
+    int x = arrayV[2];
+    printf("x is %d\n", x);
+    arrayV[2] = 47;
+
+    for (int i : arrayV) {
+        printf("%d ", i);
+    }
+    puts("");
+
 }
