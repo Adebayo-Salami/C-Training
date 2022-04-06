@@ -5,6 +5,10 @@ void StatementsAndExpressions();
 void Pointers();
 void References();
 void PrimitiveArrays();
+void PrimitiveStrings();
+void Structures();
+void CountElementChallenge();
+void CountElementChallengeSolution();
 
 int main()
 { 
@@ -24,6 +28,18 @@ int main()
 
     printf("\n");
     PrimitiveArrays();
+
+    printf("\n");
+    PrimitiveStrings();
+
+    printf("\n");
+    Structures();
+
+    printf("\n");
+    CountElementChallenge();
+
+    printf("\n");
+    CountElementChallengeSolution();
 
     return 0;
 }
@@ -124,4 +140,64 @@ void PrimitiveArrays() {
     }
     puts("");
 
+}
+
+void PrimitiveStrings() {
+    //char s[] = "String";  //String is an array of characters
+    char s[] = { 'S', 't', 'r', 'i', 'n', 'g', 0 };
+    printf("s is %s\n", s);
+    for (int i = 0; s[i] != 0; ++i) {
+        printf("char is %c\n", s[i]);
+    }
+}
+
+struct S {
+    int i;
+    double d;
+    const char* s;
+};
+void Structures() {
+    S s1 = { 3, 47.9, "string one" };
+
+    printf("s1: %d, %f, %s\n", s1.i, s1.d, s1.s);
+}
+
+void CountElementChallenge() {
+    const char string[] = "This is a null-terminated string.";
+
+    int count = 0;
+
+    for (char c : string) {
+        if (c == ' ') continue;
+    /*    printf("c : %c\n", c);*/
+        if (c == 0) break;
+        count++;
+    }
+
+    printf("The number of charactrers is: %d\n", count);
+}
+
+void CountElementChallengeSolution() {
+    const char string[] = "This is a null-terminated string.";
+
+    int count = 0;
+
+    for (count = 0; string[count]; ++count)
+        ;
+    printf("The number of fhcaracters is: %d\n", count);
+
+    count = 0;
+
+    while (string[count]) {
+        ++count;
+    }
+    printf("The number of charactrers is: %d\n", count);
+
+    count = 0;
+
+    for (int x : string) {
+        if (x == 0) break;
+        ++count;
+    }
+    printf("The number of charactrers is: %d\n", count);
 }
