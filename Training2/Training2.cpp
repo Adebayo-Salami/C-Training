@@ -9,9 +9,15 @@ void PrimitiveStrings();
 void Structures();
 void CountElementChallenge();
 void CountElementChallengeSolution();
+void IntegerSizes();
 
 int main()
 { 
+    /*
+        The term "unsigned" in computer programming indicates a variable that can hold only positive numbers. 
+        The term "signed" in computer code indicates that a variable can hold negative and positive values. 
+        The property can be applied to most of the numeric data types including int, char, short and long.
+    */
     puts("Hello World!");
 
     printf("\n");
@@ -40,6 +46,9 @@ int main()
 
     printf("\n");
     CountElementChallengeSolution();
+
+    printf("\n");
+    IntegerSizes();
 
     return 0;
 }
@@ -200,4 +209,18 @@ void CountElementChallengeSolution() {
         ++count;
     }
     printf("The number of charactrers is: %d\n", count);
+}
+
+void IntegerSizes() {
+    char c = 0;
+    short int si = 0;
+    int i = 0;
+    long int li = 0;
+    long long int lli = 0;
+
+    printf("sizeof char is %zd bits\n", sizeof(c) * 8);
+    printf("sizeof short int is %zd bits\n", sizeof(si) * 8);
+    printf("sizeof int is %zd bits\n", sizeof(i) * 8); 
+    printf("sizeof long int is %zd bits\n", sizeof(li) * 8);
+    printf("sizeof long long int is %zd bits\n", sizeof(lli) * 8);
 }
