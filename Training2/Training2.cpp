@@ -1,5 +1,7 @@
 #include <cstdio>
 #include <cstdint>
+#include <new>
+#include <typeinfo>
 
 void TestVSWithExercise();
 void StatementsAndExpressions();
@@ -20,6 +22,9 @@ void BitFields();
 void Enumerations();
 void UnionsPrac();
 void TypesWithTypeDef();
+void DynamicMemoryOperations();
+void TypeIdSizeOfTyeCast();
+void PrimeNumbersChallenge(int max = 100);
 
 int main()
 { 
@@ -42,7 +47,7 @@ int main()
     //printf("\n");
     //References();
 
-    //printf("\n");
+    //printf("\n"); 
     //PrimitiveArrays();
 
     //printf("\n");
@@ -86,6 +91,15 @@ int main()
 
     printf("\n");
     TypesWithTypeDef();
+
+    printf("\n");
+    DynamicMemoryOperations();
+
+    printf("\n");
+    TypeIdSizeOfTyeCast();
+
+    printf("\n");
+    PrimeNumbersChallenge(100);
 
     return 0;
 }
@@ -454,4 +468,117 @@ struct score {
 void TypesWithTypeDef() {
     score s = { 5, 1 };
     printf("score s had %d points and a rank of %d\n", s.p, s.r);
+}
+
+void DynamicMemoryOperations() {
+    const long int count = 1024;
+
+    printf("allocate space for %lu long int at *ip with new\n", count);
+
+    // allocate array
+    long int* ip;
+    try {
+        ip = new long int[count];
+
+        ip = new (std::nothrow) long int[count];
+        if (!ip) {
+            fputs("Cannot allocate memory \n", stderr);
+            return;
+        }
+    }
+    catch (std::bad_alloc& ba) {
+        fprintf(stderr, "Cannot allocate memory (%s)\n", ba.what());
+        return;
+    }
+
+    // initialize array
+    for (long int i = 0; i < count; i++) {
+        ip[i] = i;
+    }
+
+    // deallocate array
+    delete [] ip;
+    puts("space at *ip deleted");
+}
+
+void TypeIdSizeOfTyeCast() {
+    int x = 5;
+    long long int y;
+    y = x; //implicit
+    y = (int)x; //Explicit
+    
+    printf("x is %d \n", x);
+    printf("y is %lld \n", y);
+
+    int z = 5;
+    size_t v = sizeof z;
+    size_t tt = sizeof(double);
+    printf("sizeof v is %zd \n", v);
+    printf("sizeof tt is %zd \n", tt);
+
+    struct A { int x; };
+    struct B { int x; };
+
+    A a1;
+    A a2;
+    B b1;
+    B b2;
+
+    if (typeid(a1) == typeid(A))
+        puts("Same");
+    else
+        puts("Different");
+
+    printf("type is %s \n", typeid(B).name());
+}
+
+void PrimeNumbersChallenge(int max) {
+    if (max < 2) return;
+
+    int count = 0;
+    int primeNumbers[25] = {};
+    for (int i = 2; i <= max; i++) {
+        bool isDivisibleByOthers = false;
+        for (int z = (i - 1); z > 1; z--) {
+            //auto mod = i % z;
+            //printf("%d modulus %d is %d \n", i, z, (i % z));
+            if (i % z == 0) {
+                isDivisibleByOthers = true;
+                break;
+            }
+        }
+
+        if (!isDivisibleByOthers) {
+            primeNumbers[count++] = i;
+        }
+        if (count == 25) break;
+    }
+
+    printf("Prime numbers : %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d \n", 
+        primeNumbers[0], primeNumbers[1], primeNumbers[2], primeNumbers[3], primeNumbers[4], primeNumbers[5], primeNumbers[6], primeNumbers[7], 
+        primeNumbers[8], primeNumbers[9], primeNumbers[10], primeNumbers[11], primeNumbers[12], primeNumbers[13], primeNumbers[14], primeNumbers[15], 
+        primeNumbers[16], primeNumbers[17], primeNumbers[18], primeNumbers[19], primeNumbers[20], primeNumbers[21], primeNumbers[22], primeNumbers[23], primeNumbers[24]);
+}
+
+void PrimeNumbersSolution() {
+    bool prime_flag = false;    // is it prime?
+
+    // outer loop for prime candidates 2-99
+    for (unsigned int candidate = 2; candidate < 100; ++candidate) {
+
+        // test candidate for factors
+        prime_flag = true;
+        for (unsigned int factor = 2; factor < candidate; ++factor) {
+            if (candidate % factor == 0) {
+                prime_flag = false;
+                break;
+            }
+        }
+
+        // print it if it's prime
+        if (prime_flag) printf("%d ", candidate);
+    }
+
+    // end with a newline
+    puts("");
 }
