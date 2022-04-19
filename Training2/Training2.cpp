@@ -25,6 +25,7 @@ void TypesWithTypeDef();
 void DynamicMemoryOperations();
 void TypeIdSizeOfTyeCast();
 void PrimeNumbersChallenge(int max = 100);
+void PrimeNumbersSolution();
 
 int main()
 { 
@@ -100,6 +101,9 @@ int main()
 
     printf("\n");
     PrimeNumbersChallenge(100);
+
+    printf("\n");
+    PrimeNumbersSolution();
 
     return 0;
 }
