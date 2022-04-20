@@ -26,6 +26,7 @@ void DynamicMemoryOperations();
 void TypeIdSizeOfTyeCast();
 void PrimeNumbersChallenge(int max = 100);
 void PrimeNumbersSolution();
+void NonRecursiveFactorialQ(unsigned long int n);
 
 int main()
 { 
@@ -104,6 +105,9 @@ int main()
 
     printf("\n");
     PrimeNumbersSolution();
+
+    printf("\n");
+    NonRecursiveFactorialQ(5);
 
     return 0;
 }
@@ -585,4 +589,13 @@ void PrimeNumbersSolution() {
 
     // end with a newline
     puts("");
+}
+
+void NonRecursiveFactorialQ(unsigned long int n) {
+    if (n < 2) printf("Factorial of %d is 1. \n", n);
+
+    unsigned long int result = 1;
+    for (auto i = 2; i <= n; i++)
+        result *= i;
+    printf("Factorial of %d is %d. \n", n, result);
 }
