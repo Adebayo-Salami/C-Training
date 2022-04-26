@@ -2,6 +2,8 @@
 #include <cstdint>
 #include <new>
 #include <typeinfo>
+#include "rational.h"
+#include <iostream>
 
 void TestVSWithExercise();
 void StatementsAndExpressions();
@@ -27,6 +29,7 @@ void TypeIdSizeOfTyeCast();
 void PrimeNumbersChallenge(int max = 100);
 void PrimeNumbersSolution();
 void NonRecursiveFactorialQ(unsigned long int n);
+void RationalCode();
 
 int main()
 { 
@@ -108,6 +111,9 @@ int main()
 
     printf("\n");
     NonRecursiveFactorialQ(5);
+
+    printf("\n");
+    RationalCode();
 
     return 0;
 }
@@ -598,4 +604,64 @@ void NonRecursiveFactorialQ(unsigned long int n) {
     for (auto i = 2; i <= n; i++)
         result *= i;
     printf("Factorial of %d is %d. \n", n, result);
+}
+
+// useful for std::cout
+std::ostream& operator << (std::ostream& o, const Rational& r) {
+    return o << r.raw_string();
+}
+
+Rational operator + (const Rational& lhs, const Rational& rhs) {
+    return Rational(
+        (
+            lhs.numerator() * rhs.denominator()
+            )
+        +
+        (
+            lhs.denominator() * rhs.numerator()
+            ),
+        lhs.denominator() * rhs.denominator()
+    );
+}
+
+Rational operator - (const Rational& lhs, const Rational& rhs) {
+    Rational a;
+    return a.minusOperation(lhs, rhs);
+}
+
+void RationalCode() {
+    Rational a = 7;        // 7/1
+    std::cout << "a is: " << a << std::endl;
+
+    Rational b(25, 15);    // 5/3
+    std::cout << "b is: " << b << std::endl;
+
+    Rational c = b;        // copy constructor
+    std::cout << "c is: " << c << std::endl;
+
+    Rational d;            // default constructor
+    std::cout << "d is: " << d << std::endl;
+
+    d = c;                // assignment operator
+    std::cout << "d is: " << d << std::endl;
+
+    Rational& e = d;     // reference
+    d = e;                // assignment to self!
+    std::cout << "e is: " << e << std::endl;
+
+    std::cout << std::endl;
+    std::cout << "d is " << d.string() << std::endl;
+
+    std::cout << std::endl;
+    std::cout << a << " + " << b << " = " << a + b << std::endl;
+    std::cout << a << " - " << b << " = " << a - b << std::endl;
+    std::cout << a << " * " << b << " = " << a * b << std::endl;
+    std::cout << a << " / " << b << " = " << a / b << std::endl;
+
+    std::cout << 14 << " + " << a << " = " << 14 + a << std::endl;
+
+    std::cout << 20 << " + " << a << " = " << 20 + a << std::endl;
+    std::cout << 20 << " - " << a << " = " << 20 - a << std::endl;
+    std::cout << 20 << " * " << a << " = " << 20 * a << std::endl;
+    std::cout << 20 << " / " << a << " = " << 20 / a << std::endl;
 }

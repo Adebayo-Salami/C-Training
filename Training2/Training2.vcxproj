@@ -140,7 +140,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="rational.cpp" />
     <ClCompile Include="Training2.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="rational.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
