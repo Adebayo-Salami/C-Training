@@ -30,6 +30,8 @@ void PrimeNumbersChallenge(int max = 100);
 void PrimeNumbersSolution();
 void NonRecursiveFactorialQ(unsigned long int n);
 void RationalCode();
+void TemplateFunctions();
+void StandardFileIO();
 
 int main()
 { 
@@ -79,7 +81,7 @@ int main()
     //printf("\n");
     //CharactersAndString();
 
-    printf("\n");
+   /* printf("\n");
     CharactersEscapeSequence();
 
     printf("\n");
@@ -113,7 +115,13 @@ int main()
     NonRecursiveFactorialQ(5);
 
     printf("\n");
-    RationalCode();
+    RationalCode();*/
+
+    printf("\n");
+    TemplateFunctions();
+
+    printf("\n");
+    StandardFileIO();
 
     return 0;
 }
@@ -662,6 +670,53 @@ void RationalCode() {
 
     std::cout << 20 << " + " << a << " = " << 20 + a << std::endl;
     std::cout << 20 << " - " << a << " = " << 20 - a << std::endl;
-    std::cout << 20 << " * " << a << " = " << 20 * a << std::endl;
-    std::cout << 20 << " / " << a << " = " << 20 / a << std::endl;
+    //std::cout << 20 << " * " << a << " = " << 20 * a << std::endl;
+    //std::cout << 20 << " / " << a << " = " << 20 / a << std::endl;
+}
+
+template <typename T>
+T maxof(T a, T b) {
+    return (a > b ? a : b);
+}
+
+template <typename T>
+T Factorial(T n) {
+    T rc = n;
+    while (n > 1)
+        rc *= --n;
+    return rc;
+}
+
+void TemplateFunctions() {
+    std::cout << maxof(7, 9) << std::endl;
+    std::cout << maxof<std::string>("bbb", "aaa") << std::endl;
+}
+
+void StandardFileIO() {
+    constexpr int maxstring = 1024; //read buffer size
+    constexpr int repeat = 5;
+    const char * fn = "testfile.txt";   //file name
+    const char* str = "This is a literal c-string. \n";
+
+    //Create/Write the file
+    puts("Writing file");
+    FILE* fw = fopen(fn, "w");
+    for (int i = 0; i < repeat; i++) {
+        fputs(str, fw);
+    }
+
+    fclose(fw);
+    puts("done");
+
+    //Read the file
+    puts("reading file");
+    char buf[maxstring];
+    FILE* fr = fopen(fn, "r");
+    while (fgets(buf, maxstring, fr)) {
+        fputs(buf, stdout);
+    }
+
+    fclose(fr);
+    remove(fn);
+    puts("done");
 }
