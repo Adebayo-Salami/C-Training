@@ -4,6 +4,7 @@
 #include <typeinfo>
 #include "rational.h"
 #include <iostream>
+#include <vector>
 
 void TestVSWithExercise();
 void StatementsAndExpressions();
@@ -35,6 +36,7 @@ void StandardFileIO();
 void BinaryFileIO();
 void UnFormattedIO();
 void FormattedIO();
+void FileChallenge();
 
 int main()
 { 
@@ -129,11 +131,14 @@ int main()
     //printf("\n");
     //void BinaryFileIO();
 
-    printf("\n");
-    UnFormattedIO();
+    //printf("\n");
+    //UnFormattedIO();
+
+    //printf("\n");
+    //FormattedIO();
 
     printf("\n");
-    FormattedIO();
+    FileChallenge();
 
     return 0;
 }
@@ -789,7 +794,7 @@ void FormattedIO() {
     int i = 5;
     long int li = 1234567890L;
     const char * s = "This is a c string.";
-    //%d -> Integer
+    //%d -> Integer lf -> double
     //%f -> Float
     //%s -> C-string
     //%c -> Char
@@ -800,4 +805,45 @@ void FormattedIO() {
     printf("i is %-4d, li is %ld, s is %s \n", i, li, s);
     printf("i is %04d, li is %ld, s is %s \n", i, li, s);
     fprintf(stdout, "pointer is %p, sizeof is %zd\n", s, sizeof(s));
+}
+
+struct FileStruct {
+    std::string id;
+    std::string caption;
+    std::string description;
+};
+void FileChallenge() {
+    constexpr int maxstring = 1024; //read buffer size
+    char buf[maxstring];
+    std::vector<FileStruct> fileStrcts;
+
+    //Read File
+    std::cout << "Reading File Items.txt from chap 8" << std::endl;
+    FILE* fr = fopen("items.txt", "r");
+    while (fgets(buf, maxstring, fr)) {
+        char* ptr = std::strtok(buf, "\t");
+        FileStruct entry;
+        int i = 0;
+        while (ptr != NULL)
+        {
+            if (i == 0)
+                entry.id = ptr;
+            if (i == 1)
+                entry.caption = ptr;
+            if (i == 2)
+                entry.description = ptr;
+
+            i++;
+            std::cout << ptr << std::endl; // print the string token  
+            ptr = strtok(NULL, "\t");
+        }
+        fileStrcts.push_back(entry);
+    }
+    fclose(fr);
+    std::cout << "Done Reading File Items.txt from chap 8" << std::endl;
+    std::cout << std::endl;
+    std::cout << "Displaying Formatted File Items.txt from chap 8 Result" << std::endl;
+    for (auto entr : fileStrcts) {
+        std::cout << "sku: " << entr.id << ", name: " << entr.caption << ", desc: " << entr.description << std::endl;
+    }
 }
