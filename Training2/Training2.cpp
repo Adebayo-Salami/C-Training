@@ -799,4 +799,5 @@ void FormattedIO() {
     printf("i is %4d, li is %ld, s is %s \n", i, li, s);
     printf("i is %-4d, li is %ld, s is %s \n", i, li, s);
     printf("i is %04d, li is %ld, s is %s \n", i, li, s);
+    fprintf(stdout, "pointer is %p, sizeof is %zd\n", s, sizeof(s));
 }
