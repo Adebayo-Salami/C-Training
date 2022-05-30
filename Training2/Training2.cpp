@@ -8,6 +8,8 @@
 #include <cerrno>
 #include <cstdlib>
 #include <cstring>
+#include <iomanip>
+#include <fstream>
 
 void TestVSWithExercise();
 void StatementsAndExpressions();
@@ -909,4 +911,204 @@ void FileChallengeSolution() {
         strncpy(current_item.desc, buf + split3[2] + 1, desc_size - 1);
         printf("sku: %d, name: %s, desc: %s\n", current_item.sku, current_item.name, current_item.desc);
     }
+}
+
+void Vectors() {
+    std::cout << "vector from initializer list: " << std::endl;
+    std::vector<int> vi1 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+    std::cout << "size: " << vi1.size() << std::endl;
+    std::cout << "front: " << vi1.front() << std::endl;
+    std::cout << "back: " << vi1.back() << std::endl;
+    std::cout << std::endl;
+
+    // iterator
+    std::vector<int>::iterator itbegin = vi1.begin();
+    std::vector<int>::iterator itend = vi1.end();
+    for (auto it = itbegin; it < itend; ++it) {
+        std::cout << *it << ' ';
+    }
+    std::cout << std::endl;
+
+    std::cout << "element at 5: " << vi1[5] << std::endl;
+    std::cout << "element at 5: " << vi1.at(5) << std::endl;
+
+    std::cout << "range-based for loop:" << std::endl;
+    for (int i : vi1) {
+        std::cout << i << ' ';
+    }
+    std::cout << std::endl << std::endl;
+
+    std::cout << "insert 42 at begin + 5: " << std::endl;
+    vi1.insert(vi1.begin() + 5, 42);
+    std::cout << "size: " << vi1.size() << std::endl;
+    std::cout << "vi1[5]: " << vi1[5] << std::endl;
+
+    std::cout << "erase at begin + 5: " << std::endl;
+    vi1.erase(vi1.begin() + 5);
+    std::cout << "size: " << vi1.size() << std::endl;
+    std::cout << "vi1[5]: " << vi1[5] << std::endl;
+
+    std::cout << "push_back 47: " << std::endl;
+    vi1.push_back(47);
+    std::cout << "size: " << vi1.size() << std::endl;
+    std::cout << "vi1.back() " << vi1.back() << std::endl;
+    std::cout << std::endl;
+
+    // from C-array
+    const static size_t size = 10;
+    int ia[size] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    std::cout << "vector from C-array: " << std::endl;
+    std::vector<int> vi2(ia, ia + size);
+    for (int i : vi2) {
+        std::cout << i << ' ';
+    }
+    std::cout << std::endl << std::endl;
+
+    // std::vector of strings
+    std::cout << "vector of strings:" << std::endl;
+    std::vector<std::string> vs = { "one", "two", "three", "four", "five" };
+    for (const std::string& v : vs) {
+        std::cout << v << std::endl;
+    }
+}
+
+void Strings() {
+    std::string s1 = "This is a string";
+    std::string::iterator it;
+
+    // size & length
+    std::cout << "size is same as length: " << s1.size() << std::endl;
+    std::cout << "size is same as length: " << s1.length() << std::endl;
+
+    // + for concatenation
+    std::cout << "concatenated strings: ";
+    std::string s2 = "this is also a string";
+    std::cout << s1 + ":" + s2 << std::endl;
+    std::cout << std::endl;
+
+    // compare
+    std::cout << "is s1 == s2? " << (s1 == s2 ? "yes" : "no") << std::endl;
+    std::cout << "copy-assign s2 = s1" << std::endl;
+    s2 = s1;
+    std::cout << "is s1 == s2? " << (s1 == s2 ? "yes" : "no") << std::endl;
+    std::cout << "is s1 > \"other string\"? " << (s1 > "other string" ? "yes" : "no") << std::endl;
+    std::cout << "is s1 < \"other string\"? " << (s1 < "other string" ? "yes" : "no") << std::endl;
+    std::cout << "is \"other string\"? > s1  " << ("other string" > s1 ? "yes" : "no") << std::endl;
+    std::cout << "is \"other string\" < s1? " << ("other string" < s1 ? "yes" : "no") << std::endl;
+    std::cout << std::endl;
+
+    // iteration
+    std::cout << "each character: ";
+    for (char c : s1) {
+        std::cout << c << " ";
+    }
+    std::cout << std::endl;
+
+    // insert & erase with an iterator
+    it = s1.begin() + 5;
+    s1.insert(it, 'X');
+    std::cout << "s1 after insert: " << s1 << std::endl;
+
+    it = s1.begin() + 5;
+    s1.erase(it);
+    std::cout << "s1 after erase: " << s1 << std::endl;
+    std::cout << std::endl;
+
+    // replace
+    s1.replace(5, 2, "ain't");
+    std::cout << "s1 after replace: " << s1 << std::endl;
+
+    // substr
+    std::cout << "substr: " << s1.substr(5, 5) << std::endl;
+
+    // find
+    size_t pos = s1.find("s");
+    std::cout << "find first \"s\" in s1 (pos): " << pos << std::endl;
+
+    // rfind
+    pos = s1.rfind("s");
+    std::cout << "find last \"s\" in s1 (pos): " << pos << std::endl;
+}
+
+void IOStream() {
+    // cout is a very common class from iostream
+    std::cout << "Hello, World!" << std::endl;
+
+    std::string istr;
+    std::cout << "Prompt: ";
+    std::cin >> istr;    // one word at a time
+    std::cout << "Input: " << istr << std::endl;
+
+    char buf[128];
+    std::cin.getline(buf, sizeof(buf));
+    std::cout << buf << std::endl;
+
+    // integer formatting
+    int i1 = 42;
+    int i2 = 127;
+    int i3 = 5555;
+    std::cout << "default: " << i1 << ' ' << i2 << ' ' << i3 << std::endl;
+    std::cout << "hex: " << std::hex << i1 << ' ' << i2 << ' ' << i3 << std::endl;
+    std::cout << "hex with showbase: " << std::showbase << std::hex << i1 << ' ' << i2 << ' ' << i3 << std::endl;
+    std::cout << "octal with showbase: " << std::oct << i1 << ' ' << i2 << ' ' << i3 << std::endl;
+    std::cout << "default: " << std::noshowbase << std::dec << i1 << ' ' << i2 << ' ' << i3 << std::endl << std::endl;
+
+    // floating point formatting options
+    double d1, d2, d3;
+    d1 = 3.1415926534;
+    d2 = 1234.5;
+    d3 = 4.2e-10;
+    std::cout << "default: " << d1 << ' ' << d2 << ' ' << d3 << ' ' << std::endl;
+    std::cout << "fixed: " << std::fixed << d1 << ' ' << d2 << ' ' << d3 << ' ' << std::endl;
+    std::cout << "scientific: " << std::scientific << d1 << ' ' << d2 << ' ' << d3 << ' ' << std::endl;
+    std::cout << "set precision (3): " << std::setprecision(3) << std::fixed << d1 << ' ' << d2 << ' ' << d3 << ' ' << std::endl;
+    std::cout << "scientific (7): " << std::setprecision(7) << std::scientific << d1 << ' ' << d2 << ' ' << d3 << ' ' << std::endl;
+    std::cout.unsetf(std::ios_base::floatfield);
+    std::cout << "default: " << d1 << ' ' << d2 << ' ' << d3 << ' ' << std::endl << std::endl;
+
+    // string formatting options
+    std::string s1 = "This is a string.";
+    std::string s2 = "This is a much longer string.";
+    std::string s3 = "Today's news: Big Light in Sky Slated to Appear in East";
+
+    std::cout << s1 << std::endl;
+    std::cout << s2 << std::endl;
+    std::cout << s3 << std::endl;
+
+    std::cout << std::setw(64) << std::right << s1 << std::endl;
+    std::cout << std::setw(64) << std::right << s2 << std::endl;
+    std::cout << std::setw(64) << std::right << s3 << std::endl;
+
+    std::cout << std::setfill('-') << std::setw(64) << std::right << s1 << std::endl;
+    std::cout << std::setfill(' ') << std::setw(64) << std::right << s1 << std::endl;
+    std::cout << std::left << s1 << std::endl;
+}
+
+void IOStreamFile() {
+    static int lineno = 0;
+    static const char* filename = "test.txt";
+    static const char* textstring = "This is the test file";
+
+    // write a file
+    std::cout << "write the file:" << std::endl;
+    std::ofstream ofile(filename);
+    ofile << ++lineno << " " << textstring << std::endl;
+    ofile << ++lineno << " " << textstring << std::endl;
+    ofile << ++lineno << " " << textstring << std::endl;
+    ofile.close();
+
+    // read a file
+    static char buf[128];
+    std::cout << "read the file:" << std::endl;
+    std::ifstream infile(filename);
+    while (infile.good()) {
+        infile.getline(buf, sizeof(buf));
+        std::cout << buf << std::endl;
+    }
+    infile.close();
+
+    // delete file
+    std::cout << "delete file." << std::endl;
+    remove(filename);
 }
