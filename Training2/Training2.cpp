@@ -42,6 +42,7 @@ void BinaryFileIO();
 void UnFormattedIO();
 void FormattedIO();
 void FileChallenge();
+void ChallengeTFile();
 
 int main()
 { 
@@ -142,8 +143,11 @@ int main()
     //printf("\n");
     //FormattedIO();
 
+    //printf("\n");
+    //FileChallenge();
+
     printf("\n");
-    FileChallenge();
+    ChallengeTFile();
 
     return 0;
 }
@@ -1111,4 +1115,166 @@ void IOStreamFile() {
     // delete file
     std::cout << "delete file." << std::endl;
     remove(filename);
+}
+
+namespace BW {
+    class E : public std::exception {
+        const char* msg;
+        E();
+    public:
+        E(const char* s) noexcept(true) : msg(s) {}
+        const char* what() const noexcept(true) { return msg; }
+    };
+}
+
+const BW::E e_ouch("Ouch!");
+const BW::E e_bad("Bad!");
+const BW::E e_worse("Don't do that!!");
+
+void broken() {
+    std::cout << "this is a broken function" << std::endl;
+    throw std::exception();
+}
+
+void brokenE() {
+    std::cout << "this is a broken function" << std::endl;
+    //throw BW::E("Ouch");
+    throw e_worse;
+}
+
+void ExceptionClass() {
+    std::cout << "let's have an emergency!" << std::endl;
+    try {
+        broken();
+    }
+    catch (std::exception& e) {
+        std::cout << e.what() << std::endl;
+    }
+
+    try {
+        brokenE();
+    }
+    catch (BW::E & e) {
+        std::cout << e.what() << std::endl;
+    }
+}
+
+void ChallengeTFile() {
+    std::vector<FileStruct> fileStrcts;
+
+    //Read the file
+    static char buf[128];
+    std::cout << "read the file:" << std::endl;
+    std::ifstream infile("items.txt");
+    while (infile.good()) {
+        infile.getline(buf, sizeof(buf));
+        char* ptr = std::strtok(buf, "\t");
+        FileStruct entry;
+        int i = 0;
+        while (ptr != NULL)
+        {
+            if (i == 0)
+                entry.id = ptr;
+            if (i == 1)
+                entry.caption = ptr;
+            if (i == 2)
+                entry.description = ptr;
+
+            i++; 
+            ptr = strtok(NULL, "\t");
+        }
+        fileStrcts.push_back(entry);
+    }
+    infile.close();
+
+    std::cout << "Done Reading File Items.txt from chap 8" << std::endl;
+    std::cout << std::endl;
+    std::cout << "Displaying Formatted File Items.txt from chap 8 Result" << std::endl;
+    for (auto & entr : fileStrcts) {
+        std::cout << "sku: " << entr.id << ", name: " << entr.caption << ", desc: " << entr.description << std::endl;
+    }
+}
+
+class Item2 {
+    int _sku;
+    std::string _name;
+    std::string _desc;
+public:
+    Item2() { reset(); }
+    Item2(int sku, std::string& name, std::string& desc) : _sku(sku), _name(name), _desc(desc) {}
+    Item2(const Item2&);
+    Item2 operator=(const Item2&);
+    ~Item2() { reset(); }
+    void reset() { _sku = 0; _name = _desc = "unk"; }
+    void sku(int sku) { _sku = sku; }
+    int sku() const { return _sku; }
+    void name(const std::string& name) { _name = name; }
+    std::string name() const { return _name; }
+    void desc(const std::string& desc) { _desc = desc; }
+    std::string desc() const { return _desc; }
+};
+
+Item2::Item2(const Item2 & rhs) {
+    _sku = rhs._sku;
+    _name = rhs._name;
+    _desc = rhs._desc;
+}
+
+Item2 Item2::operator=(const Item2& rhs)
+{
+    if (this != &rhs) {
+        _sku = rhs._sku;
+        _name = rhs._name;
+        _desc = rhs._desc;
+    }
+    return Item2();
+}
+
+//Item2 & Item2::operator=(const Item2 & rhs) {
+//    if (this != &rhs) {
+//        _sku = rhs._sku;
+//        _name = rhs._name;
+//        _desc = rhs._desc;
+//    }
+//    return *this;
+//}
+
+// split a string
+std::vector<std::string> strsplit(const std::string& s) {
+    std::vector<std::string> strs_v;    // vector for results
+    size_t start_loc = 0;
+    size_t sep_loc = 0;
+    while (true) {
+        sep_loc = s.find(tab_char, start_loc);
+        strs_v.push_back(s.substr(start_loc, sep_loc - start_loc));
+        if (sep_loc == std::string::npos) break;
+        start_loc = sep_loc + 1;
+    }
+    return strs_v;
+}
+
+void Something() {
+    char buf[maxstring];    // buffer for reading lines in file
+
+    // open the file
+    std::ifstream infile(filename);
+
+    // read the file
+    while (infile.good()) {
+        // get the line
+        infile.getline(buf, sizeof(buf));
+        if (*buf == 0) break;
+
+        // split the string
+        std::vector<std::string> split_v = strsplit(buf);
+        if (split_v.size() < 3) continue;
+
+        // construct the object
+        Item2 current_item(std::stoi(split_v[0]), split_v[1], split_v[2]);
+        std::cout << "sku: " << current_item.sku()
+            << ", name: " << current_item.name()
+            << ", desc: " << current_item.desc() << std::endl;
+
+    }
+    infile.close();
 }
