@@ -10,6 +10,7 @@
 #include <cstring>
 #include <iomanip>
 #include <fstream>
+#include "CardB.h"
 
 void TestVSWithExercise();
 void StatementsAndExpressions();
@@ -43,6 +44,7 @@ void UnFormattedIO();
 void FormattedIO();
 void FileChallenge();
 void ChallengeTFile();
+void DeckOfCardsChallenge();
 
 int main()
 { 
@@ -146,8 +148,11 @@ int main()
     //printf("\n");
     //FileChallenge();
 
+    //printf("\n");
+    //ChallengeTFile();
+
     printf("\n");
-    ChallengeTFile();
+    DeckOfCardsChallenge();
 
     return 0;
 }
@@ -1277,4 +1282,20 @@ void Something() {
 
     }
     infile.close();
+}
+
+void DeckOfCardsChallenge() {
+    auto cardGame = CardB();
+    std::cout << "Deck Size: " << cardGame.deck_size() << std::endl;
+    cardGame.shuffle_deck();
+    auto card1 = cardGame.deal_card();
+    std::cout << "Card Dealed -> " << card1.suite << " " << card1.rank << std::endl;
+    std::cout << "Deck Size: " << cardGame.deck_size() << std::endl;
+    cardGame.new_deck();
+    std::cout << "Deck Size: " << cardGame.deck_size() << std::endl;
+    cardGame.shuffle_deck();
+    auto card2 = cardGame.deal_card();
+    std::cout << "Card Dealed -> " << card1.suite << " " << card1.rank << std::endl;
+    cardGame.deal_card(12);
+    std::cout << "Deck Size: " << cardGame.deck_size() << std::endl;
 }

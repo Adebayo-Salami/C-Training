@@ -3,22 +3,22 @@
 #include <vector>
 #include <iostream>
 #include <string>
-#include <random>
 #include <algorithm>
+#include <random>
 
 struct CardInfo {
 	std::string rank;
 	std::string suite;
 	const char suite_label;
 
-	CardInfo operator=(const CardInfo & rhs) const 
-	{
-		return {
-			rhs.rank,
-			rhs.suite,
-			rhs.suite_label
-		};
-	}
+	//CardInfo operator=(const CardInfo & rhs) const 
+	//{
+	//	return {
+	//		rhs.rank,
+	//		rhs.suite,
+	//		rhs.suite_label
+	//	};
+	//}
 };
 
 class CardB {
@@ -34,6 +34,7 @@ public:
 	~CardB();
 	void shuffle_deck();
 	const CardInfo & deal_card();
+	void deal_card(int count);
 	void new_deck();
 	void new_deck(int deck_count);
 	int deck_size();
