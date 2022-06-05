@@ -56,6 +56,7 @@ void CardB::shuffle_deck()
 
 const CardInfo & CardB::deal_card()
 {
+	if (cards.empty()) throw "Can't Deal From Empty Deck";
 	auto card_dealed = cards[cards.size() - 1];
 	cards_dealed.push_back({ (card_dealed).rank, (card_dealed).suite, (card_dealed).suite_label });
 	cards.pop_back();

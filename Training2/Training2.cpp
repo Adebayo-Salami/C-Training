@@ -45,6 +45,7 @@ void FormattedIO();
 void FileChallenge();
 void ChallengeTFile();
 void DeckOfCardsChallenge();
+void DeckOfCardsChallengeDemonstration();
 
 int main()
 { 
@@ -151,8 +152,11 @@ int main()
     //printf("\n");
     //ChallengeTFile();
 
+    //printf("\n");
+    //DeckOfCardsChallenge();
+
     printf("\n");
-    DeckOfCardsChallenge();
+    DeckOfCardsChallengeDemonstration();
 
     return 0;
 }
@@ -1299,3 +1303,16 @@ void DeckOfCardsChallenge() {
     cardGame.deal_card(12);
     std::cout << "Deck Size: " << cardGame.deck_size() << std::endl;
 }
+
+void DeckOfCardsChallengeDemonstration() {
+    auto cardGame = CardB();
+
+    std::cout << "Deck Size: " << cardGame.deck_size() << std::endl;
+    cardGame.shuffle_deck();
+    cardGame.deal_card(9);
+    cardGame.deal_card(5);
+    cardGame.deal_card(13);
+    cardGame.deal_card(10);
+    std::cout << "Deck Size: " << cardGame.deck_size() << std::endl;
+}
+
