@@ -140,10 +140,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CardB.cpp" />
     <ClCompile Include="rational.cpp" />
     <ClCompile Include="Training2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CardB.h" />
     <ClInclude Include="rational.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

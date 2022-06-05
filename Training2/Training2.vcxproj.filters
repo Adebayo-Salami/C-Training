@@ -21,9 +21,15 @@
     <ClCompile Include="rational.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CardB.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="rational.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CardB.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
