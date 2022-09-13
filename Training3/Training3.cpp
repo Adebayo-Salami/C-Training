@@ -7,11 +7,15 @@
 #include <vector>
 
 void Templates();
+void STLContainers();
 
 int main()
 {
     printf("\n");
     Templates();
+
+    printf("\n");
+    STLContainers();
 }
 
 template<typename T>
@@ -60,4 +64,8 @@ void Templates() {
     std::vector<int> v1 = { 1,2,3,4,5 };
     printv(v1);     //Template Argument Deduction
     printv<int>(v1);
+}
+
+void STLContainers() {
+
 }
