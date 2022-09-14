@@ -11,6 +11,8 @@
 #include <deque>
 #include <queue>
 #include <stack>
+#include <set>
+#include <unordered_set>
 
 using namespace std;
 
@@ -23,6 +25,7 @@ void STLContainers_Array();
 void STLContainers_Deque();
 void STLContainers_Queue();
 void STLContainers_Stack();
+void STLContainers_Sets();
 
 int main()
 {
@@ -52,6 +55,9 @@ int main()
 
     printf("\n");
     STLContainers_Stack();
+
+    printf("\n");
+    STLContainers_Sets();
 }
 
 template<typename T>
@@ -131,6 +137,14 @@ void report_queue(T& q) {
 template <typename T>
 void report_stack(T& stk) {
     cout << "size: " << stk.size() << " top: " << stk.top() << endl;
+}
+
+// print the elements of the set
+template<typename T>
+void print_set(T& s) {
+    if (s.empty()) return;
+    for (auto x : s) cout << x << " ";
+    cout << endl;
 }
 
 void message(const char* s) { std::cout << s << std::endl; }
@@ -417,5 +431,60 @@ void STLContainers_Stack() {
     message("stk2 pop");
     stk2.pop();
     report_stack(stk2);
+}
+
+void STLContainers_Sets() {
+    message("construct set set1");
+    set<string> set1 = { "one", "two", "three", "four", "five" };
+    message("size of set", set1.size());
+    message("ordered set is alphabetical");
+    print_set(set1);
+
+    message("insert element six");
+    set1.insert("six");
+    print_set(set1);
+
+    message("find and erase element six");
+    set<string>::iterator it = set1.find("six");
+    if (it != set1.end()) {
+        message("erasing", *it);
+        set1.erase(it);
+    }
+    else {
+        cout << "not found" << endl;
+    }
+    print_set(set1);
+
+    message("inserting duplicate element five");
+    set1.insert("five");
+    print_set(set1);
+    cout << endl;
+
+
+    message("construct unordered set set1");
+    unordered_set<string> set2 = { "one", "two", "three", "four", "five" };
+    message("size of set", set2.size());
+    message("unordered set has no defined order");
+    print_set(set2);
+
+    message("insert element six");
+    set2.insert("six");
+    print_set(set2);
+
+    message("find and erase element six");
+    auto it2 = set2.find("six");
+    if (it2 != set2.end()) {
+        message("erasing", *it2);
+        set2.erase(it2);
+    }
+    else {
+        cout << "not found" << endl;
+    }
+    print_set(set2);
+
+    message("inserting duplicate element five");
+    set2.insert("five");
+    print_set(set2);
+    cout << endl;
 }
 
