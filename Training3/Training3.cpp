@@ -457,6 +457,7 @@ void STLContainers_Sets() {
 
     message("inserting duplicate element five");
     set1.insert("five");
+    auto r = set1.insert("five");   // returns a pair (first being an iterator to the new or duplicate element, second being the status bool r.second
     print_set(set1);
     cout << endl;
 
