@@ -8,6 +8,8 @@
 #include <list>
 #include <tuple>
 #include <array>
+#include <deque>
+#include <queue>
 
 using namespace std;
 
@@ -17,6 +19,8 @@ void STLContainers_List();
 void STLContainers_Pair();
 void STLContainers_Tuple();
 void STLContainers_Array();
+void STLContainers_Deque();
+void STLContainers_Queue();
 
 int main()
 {
@@ -37,6 +41,12 @@ int main()
 
     printf("\n");
     STLContainers_Array();
+
+    printf("\n");
+    STLContainers_Deque();
+
+    printf("\n");
+    STLContainers_Queue();
 }
 
 template<typename T>
@@ -85,6 +95,31 @@ void printpair(pair<T1, T2>& p) {
 template<typename T, size_t N>
 void printa(array<T, N>& a) {
     for (T& i : a) cout << i << " ";
+    cout << endl;
+}
+
+// report deque info
+template <typename T>
+void reportdeq(T& d) {
+    size_t sz = d.size();
+    cout << "size: " << sz;
+    if (sz) cout << " front: " << d.front() << " back: " << d.back();
+    cout << endl;
+}
+
+// print deque
+template <typename T>
+void printdeq(T& d) {
+    if (d.empty()) return;
+    for (auto v : d) cout << v << " ";
+    cout << endl;
+}
+
+template <typename T>
+void report_queue(T& q) {
+    size_t sz = q.size();
+    cout << "size: " << sz;
+    if (sz) cout << " front: " << q.front() << " back: " << q.back();
     cout << endl;
 }
 
@@ -286,3 +321,64 @@ void STLContainers_Array() {
         cout << "element " << i << " is " << *ip2++ << endl;
     }
 }
+
+void STLContainers_Deque() {
+    message("create deque");
+    deque<string> d1 = { "one", "two", "three" };
+
+    message("push back values");
+    d1.push_back("four");
+    d1.push_back("five");
+
+    reportdeq(d1);
+    printdeq(d1);
+
+    message("pop from front");
+    d1.pop_front();
+    printdeq(d1);
+
+    message("pop from back");
+    d1.pop_back();
+    printdeq(d1);
+
+    message("push front");
+    d1.push_front("newfront");
+    printdeq(d1);
+
+    message("push back");
+    d1.push_back("newback");
+    printdeq(d1);
+}
+
+void STLContainers_Queue() {
+    // queue from list
+    message("initialize queue from list");
+    list<int> l1 = { 1, 2, 3, 4, 5 };
+    queue<int, list<int>> q1(l1);    // constructor copies to new list
+    report_queue(q1);
+
+    message("pop all from q1");
+    while (!q1.empty()) {
+        cout << q1.front() << " ";
+        q1.pop();
+    }
+    cout << endl;
+    report_queue(q1);
+
+    // default queue (deque)
+    queue<string> q2;
+    message("push strings onto q2");
+    for (string s : {"one", "two", "three", "four", "five"}) {
+        q2.push(s);
+    }
+    report_queue(q2);
+
+    message("pop all from q2");
+    while (!q2.empty()) {
+        cout << q2.front() << " ";
+        q2.pop();
+    }
+    cout << endl;
+    report_queue(q2);
+}
+
