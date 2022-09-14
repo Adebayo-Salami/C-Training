@@ -5,9 +5,11 @@
 #include <string>
 #include <typeinfo>
 #include <vector>
+#include <list>
 
 void Templates();
-void STLContainers();
+void STLContainers_Vector();
+void STLContainers_List();
 
 int main()
 {
@@ -15,11 +17,21 @@ int main()
     Templates();
 
     printf("\n");
-    STLContainers();
+    STLContainers_Vector();
+
+    printf("\n");
+    STLContainers_List();
 }
 
 template<typename T>
 constexpr T pi = T(3.1415926535897932385L);
+
+template<typename T>
+void printl(std::list<T>& l) {
+    if (l.empty()) return;
+    for (T& i : l) std::cout << i << " ";
+    std::cout << std::endl;
+}
 
 template<typename T>
 T area_of_circle(const T& r) {
@@ -38,6 +50,9 @@ void printv(const std::vector<T>& v) {
         std::cout << i << " ";
     std::endl;
 }
+
+void message(const char* s) { std::cout << s << std::endl; }
+void message(const char* s, const int n) { std::cout << s << ": " << n << std::endl; }
 
 void Templates() {
     std::cout.precision(20);
@@ -66,6 +81,43 @@ void Templates() {
     printv<int>(v1);
 }
 
-void STLContainers() {
+void STLContainers_Vector() {
+    std::vector<int> v1 = { 1,2,3,4,5 };
+    std::cout << "Elemet at 5 " << v1[5] << std::endl;
+    v1.insert(v1.begin() + 5, 42);
+    std::cout << "Elemet at 5 " << v1.at(5) << std::endl;
+    v1.erase(v1.begin() + 5);
+    v1.push_back(47);
+    v1.pop_back();  // removed element at end of vector
+    v1.empty();
+
+    std::vector<int> vx = { 1,2,3 };
+    while (!vx.empty())
+        vx.pop_back();
+    std::cout << "Is VX Empty: " << vx.empty() << std::endl;
+    vx.insert(vx.begin(), { 1,2,3,4,5 });
+    std::cout << "Is VX Empty: " << vx.empty() << std::endl;
+    vx.clear();
+    std::cout << "Is VX Empty: " << vx.empty() << std::endl;
+
+    // From C-array
+    constexpr size_t size = 10;
+    int ia[size] = { 1,2,3,4,5,6,7,8,9,10 };
+    std::cout << "Vector from C-array" << std::endl;
+    std::vector<int> v2(ia, ia + size);
+    std::cout << "Is v2 Empty: " << v2.empty() << std::endl;
+
+    // Filled with strings
+    std::cout << "Vector filled with string" << std::endl;
+    std::vector<std::string> v3(5, "string");   // Reapeat string 5 times
+
+    // Copy Constructor
+    std::vector<std::string> v4(v3);
+
+    // Move Constructor
+    std::vector<std::string> v5(std::move(v4));
+}
+
+void STLContainers_List() {
 
 }
