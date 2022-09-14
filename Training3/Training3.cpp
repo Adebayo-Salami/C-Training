@@ -511,6 +511,8 @@ void STLContainers_Maps() {
     message("map of strings from initializer list");
     map<string, string> mapstr = { { "George", "Father" }, { "Ellen", "Mother" },
         { "Ruth", "Daughter" }, { "Spike", "Neighbor's Son" } };
+    multimap<string, string> multimapstr = { { "George", "Father" }, { "Ellen", "Mother" },
+        { "Ruth", "Daughter" }, { "Spike", "Neighbor's Son" } };    // multimap allow duplicates so doesnt have at and [] helper methods
 
     message("size", mapstr.size());
     message("get some values");
