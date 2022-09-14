@@ -6,10 +6,17 @@
 #include <typeinfo>
 #include <vector>
 #include <list>
+#include <tuple>
+#include <array>
+
+using namespace std;
 
 void Templates();
 void STLContainers_Vector();
 void STLContainers_List();
+void STLContainers_Pair();
+void STLContainers_Tuple();
+void STLContainers_Array();
 
 int main()
 {
@@ -21,6 +28,15 @@ int main()
 
     printf("\n");
     STLContainers_List();
+
+    printf("\n");
+    STLContainers_Pair();
+
+    printf("\n");
+    STLContainers_Tuple();
+
+    printf("\n");
+    STLContainers_Array();
 }
 
 template<typename T>
@@ -51,8 +67,32 @@ void printv(const std::vector<T>& v) {
     std::endl;
 }
 
+// print the elements of the tuple
+template<typename T>
+void print3tuple(T t) {
+    auto tsz = tuple_size<decltype(t)>::value;
+    if (tsz != 3) return;
+    cout << get<0>(t) << " : " << get<1>(t) << " : " << get<2>(t) << endl;
+}
+
+// print the pair
+template<typename T1, typename T2>
+void printpair(pair<T1, T2>& p) {
+    cout << p.first << " : " << p.second << endl;
+}
+
+// print the elements of the array
+template<typename T, size_t N>
+void printa(array<T, N>& a) {
+    for (T& i : a) cout << i << " ";
+    cout << endl;
+}
+
 void message(const char* s) { std::cout << s << std::endl; }
 void message(const char* s, const int n) { std::cout << s << ": " << n << std::endl; }
+
+template<typename T>
+void message(const char* s, const T& v) { cout << s << ": " << v << endl; }
 
 void Templates() {
     std::cout.precision(20);
@@ -119,5 +159,130 @@ void STLContainers_Vector() {
 }
 
 void STLContainers_List() {
+    list<int> l1 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    printl(l1);
+    message("size", (int)l1.size());
+    message("front", l1.front());
+    message("back", l1.back());
 
+    message("push back 47");
+    l1.push_back(47);
+    printl(l1);
+
+    // need an iterator to insert and erase
+    message("insert:");
+    list<int>::iterator it1 = l1.begin();
+    while ((*++it1 != 5) && (it1 != l1.end()));
+    if (it1 != l1.end()) {
+        message("insert 112 before 5");
+        l1.insert(it1, 112);
+    }
+    printl(l1);
+
+    // find element value 7
+    while ((*++it1 != 7) && (it1 != l1.end()));
+    if (it1 != l1.end()) {
+        message("erase 7");
+        l1.erase(it1);
+    }
+    printl(l1);
+
+    // remove element value 8
+    l1.remove(8);
+    message("remove 8");
+    printl(l1);
+
+    message("erase 112 to 9");
+    auto it2 = it1 = l1.begin();
+    while ((*++it1 != 112) && (it1 != l1.end()));
+    while ((*++it2 != 9) && (it2 != l1.end()));
+    if (it1 != l1.end() && it2 != l1.end()) {
+        l1.erase(it1, it2);
+        printl(l1);
+    }
+
+    cout << endl;
+}
+
+void STLContainers_Tuple() {
+    // initializer list
+    message("initializer list");
+    tuple<int, string, int> t1 = { 47, "forty-seven", 1 };
+    print3tuple(t1);
+
+    // default constructor
+    message("default constructor");
+    tuple<int, string, int> t2(72, "seventy-two", 2);
+    print3tuple(t2);
+
+    // make_tuple
+    message("make_tuple");
+    auto t3 = make_tuple(7, "seven", 3);
+    print3tuple(t3);
+
+    // comparison operators
+    message("t1 == t2", t1 == t2);
+    message("t1 < t2", t1 < t2);
+    message("t1 < t3", t1 < t3);
+    message("t1 > t2", t1 > t2);
+    message("t2 > t3", t2 > t3);
+}
+
+void STLContainers_Pair() {
+    // initializer list
+    message("initializer list");
+    pair<int, string> p1 = { 47, "forty-seven" };
+    printpair(p1);
+
+    // default constructor
+    message("default constructor");
+    pair<int, string> p2(72, "seventy-two");
+    printpair(p2);
+
+    // from make_pair
+    message("make_pair");
+    pair<int, string> p3;
+    p3 = make_pair(7, "seven");
+    printpair(p3);
+
+    // comparison operators
+    message("p1 == p2", p1 == p2);
+    message("p1 < p2", p1 < p2);
+    message("p1 < p3", p1 < p3);
+    message("p1 > p2", p1 > p2);
+    message("p2 > p3", p2 > p3);
+}
+
+void STLContainers_Array() {
+    // initializer list
+    message("initializer list");
+    array<int, 5> a1 = { 1, 2, 3, 4, 5 };
+    printa(a1);
+
+    // default constructor
+    message("default constructor");
+    array<string, 5> a2;
+    a2 = { "one", "two", "three" };
+    printa(a2);
+
+    // check the size
+    message("size of a1", (int)a1.size());
+    message("size of a2", (int)a2.size());
+
+    // access elements
+    message("a1 element 3 is", a1[3]);
+    message("a2 element 2 is", a2[2]);
+    message("a1 element 3 is", a1.at(3));
+    message("a2 element 2 is", a2.at(2));
+
+    // direct access data
+    int* ip1 = a1.data();
+    for (size_t i = 0; i < a1.size(); ++i) {
+        cout << "element " << i << " is " << *ip1++ << endl;
+    }
+
+    string* ip2 = a2.data();
+    for (size_t i = 0; i < a2.size(); ++i) {
+        cout << "element " << i << " is " << *ip2++ << endl;
+    }
 }
