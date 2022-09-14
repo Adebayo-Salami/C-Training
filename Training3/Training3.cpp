@@ -128,6 +128,11 @@ void report_queue(T& q) {
     cout << endl;
 }
 
+template <typename T>
+void report_stack(T& stk) {
+    cout << "size: " << stk.size() << " top: " << stk.top() << endl;
+}
+
 void message(const char* s) { std::cout << s << std::endl; }
 void message(const char* s, const int n) { std::cout << s << ": " << n << std::endl; }
 
