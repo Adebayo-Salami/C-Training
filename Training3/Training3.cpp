@@ -932,13 +932,42 @@ void STLFunctions_Arithmetic() {
     //plus<long> f;
     //minus<long> f;
     //multiplies<long> f;
-    divides<long> f;
-    transform(v1.begin(), v1.end(), v2.begin(), v3.begin(), f);
+    //divides<long> f;
+    modulus<long> f;
+    negate<long> f_n;
+    //transform(v1.begin(), v1.end(), v2.begin(), v3.begin(), f);
+    transform(v1.begin(), v1.end(), v3.begin(), f_n);
     disp_v(v3);
 }
 
-void STLFunctions_Relational() {
+template <typename T>
+void disp_v(vector<T>& v) {
+    if (!v.size()) return;
+    if (typeid(T) == typeid(bool)) {
+        for (bool e : v) { cout << (e ? "T" : "F") << " "; }
+    }
+    else {
+        for (T e : v) { cout << e << " "; }
+    }
+    cout << endl;
+}
 
+void STLFunctions_Relational() {
+    vector<long> v1 = { 26, 52, 79, 114, 183 };
+    vector<long> v2 = { 52, 2, 72, 114 ,5 };
+    vector<bool> v3(v1.size());
+    disp_v(v1);
+    disp_v(v2);
+    cout << endl;
+
+    //greater<long> f;
+    //less<long> f;
+    //greater_equal<long> f;
+    //less_equal<long> f;
+    //equal_to<long> f;
+    not_equal_to<long> f;
+    transform(v1.begin(), v1.end(), v2.begin(), v3.begin(), f);
+    disp_v(v3);
 }
 
 void STLFunctions_Logical() {
