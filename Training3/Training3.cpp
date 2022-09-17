@@ -990,8 +990,11 @@ void STLFunctions_Logical() {
     disp_v(v2);
     cout << endl;
 
-    logical_and<int> f;
-    transform(v1.begin(), v1.end(), v2.begin(), v3.begin(), f);
+    //logical_and<int> f;
+    logical_or<int> f;
+    logical_not<int> f_n;
+    //transform(v1.begin(), v1.end(), v2.begin(), v3.begin(), f);
+    transform(v1.begin(), v1.end(), v3.begin(), f_n);
     disp_v(v3);
 }
 
