@@ -199,7 +199,7 @@ auto tf(const lT& lhs, const rT& rhs) {
 template <typename T>
 void printv(const std::vector<T>& v) {
     if (v.empty()) return;
-    for (const T& i : v)
+    for (const T & i : v)
         std::cout << i << " ";
     std::endl;
 }
@@ -306,7 +306,7 @@ void Templates() {
     std::cout << "type of z is " << typeid(z).name() << std::endl;
 
     std::vector<int> v1 = { 1,2,3,4,5 };
-    printv(v1);     //Template Argument Deduction
+    //printv(v1);     //Template Argument Deduction
     printv<int>(v1);
 }
 
@@ -882,13 +882,6 @@ public:
     T operator() (const T& n1, const T& n2) { return _accum = n1 * n2 * _accum; }
 };
 
-template <typename T>
-void disp_v(vector<T>& v) {
-    if (!v.size()) return;
-    for (T e : v) { cout << e << " "; }
-    cout << endl;
-}
-
 void Transformations_BinaryTransform() {
     vector<long> v1 = { 1, 2, 3, 4 ,5 };
     vector<long> v2 = { 5, 10, 15, 20, 25 };
@@ -975,7 +968,7 @@ void STLFunctions_Arithmetic() {
 }
 
 template <typename T>
-void disp_v(vector<T>& v) {
+void disp_v_b(vector<T>& v) {
     if (!v.size()) return;
     if (typeid(T) == typeid(bool)) {
         for (bool e : v) { cout << (e ? "T" : "F") << " "; }
@@ -990,8 +983,8 @@ void STLFunctions_Relational() {
     vector<long> v1 = { 26, 52, 79, 114, 183 };
     vector<long> v2 = { 52, 2, 72, 114 ,5 };
     vector<bool> v3(v1.size());
-    disp_v(v1);
-    disp_v(v2);
+    disp_v_b(v1);
+    disp_v_b(v2);
     cout << endl;
 
     //greater<long> f;
@@ -1001,13 +994,13 @@ void STLFunctions_Relational() {
     //equal_to<long> f;
     not_equal_to<long> f;
     transform(v1.begin(), v1.end(), v2.begin(), v3.begin(), f);
-    disp_v(v3);
+    disp_v_b(v3);
 
     //greater<long> ff;
     less<long> ff;
     sort(v2.begin(), v2.end(), ff);
 
-    disp_v(v3);
+    disp_v_b(v3);
 }
 
 template <typename T>
@@ -1117,21 +1110,47 @@ void STLAlgorithm_SearchingCounting() {
     auto c = count_if(v1.begin(), v1.end(), is_odd<int>);
     cout << "found " << c << " occurrences" << endl;
 }
-void STLAlgorithm_ReplacingRemoving() {
 
+template <typename T>
+bool is_even(const T& n) {
+    return ((n % 2) == 0);
 }
+
+void STLAlgorithm_ReplacingRemoving() {
+    // prime numbers < 100
+    vector<int> v1 = { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 11, 41, 43, 47, 53, 59, 11, 61, 67, 71, 73, 79, 83, 89, 97 };
+    disp_v(v1);
+
+    //replace(v1.begin(), v1.end(), 47, 99);
+    replace_if(v1.begin(), v1.end(), is_even<int>, 99);
+    auto it = remove(v1.begin(), v1.end(), 11);
+    if (it == v1.end()) {
+        cout << " no elements removed" << endl;
+    }
+    else {
+        v1.resize(it - v1.begin());
+    }
+
+
+    disp_v(v1);
+}
+
 void STLAlgorithm_ModifyingAlgo() {
 
 }
+
 void STLAlgorithm_Partitions() {
 
 }
+
 void STLAlgorithm_Sorting() {
 
 }
+
 void STLAlgorithm_MergingSequence() {
 
 }
+
 void STLAlgorithm_BinarySearches() {
 
 }
