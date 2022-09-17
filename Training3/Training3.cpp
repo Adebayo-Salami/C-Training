@@ -921,7 +921,20 @@ void STLFunctions_Functors() {
 }
 
 void STLFunctions_Arithmetic() {
+    vector<long> v1 = { 26, 52, 79, 114, 183 };
+    vector<long> v2 = { 1, 2, 3, 4 ,5 };
+    vector<long> v3(v1.size(), 0);
+    disp_v(v1);
+    disp_v(v2);
+    disp_v(v3);
+    cout << endl;
 
+    //plus<long> f;
+    //minus<long> f;
+    //multiplies<long> f;
+    divides<long> f;
+    transform(v1.begin(), v1.end(), v2.begin(), v3.begin(), f);
+    disp_v(v3);
 }
 
 void STLFunctions_Relational() {
