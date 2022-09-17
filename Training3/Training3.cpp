@@ -16,6 +16,8 @@
 #include <map>
 #include <iterator>
 #include <forward_list>
+#include <algorithm>
+#include "rational.h"
 
 using namespace std;
 
@@ -36,9 +38,17 @@ void STLIterators_OutputIterators();
 void STLIterators_ForwardIterators();
 void STLIterators_BiDerectionalIterators();
 void STLIterators_RandomAccesIterators();
+void Transformations_Transform();
+void Transformations_Transform2();
+void Transformations_LambdaTransform();
+void Transformations_StringsTransform();
+void Transformations_BinaryTransform();
+void Transformations_TypesTransform();
 
 int main()
 {
+#pragma region Hidden Calls
+
     printf("\n");
     Templates();
 
@@ -84,9 +94,31 @@ int main()
     printf("\n");
     STLIterators_BiDerectionalIterators();
 
+#pragma endregion
+
     printf("\n");
     STLIterators_RandomAccesIterators();
+
+    printf("\n");
+    Transformations_Transform();
+
+    printf("\n");
+    Transformations_Transform2();
+
+    printf("\n");
+    Transformations_LambdaTransform();
+
+    printf("\n");
+    Transformations_StringsTransform();
+
+    printf("\n");
+    Transformations_BinaryTransform();
+
+    printf("\n");
+    Transformations_TypesTransform();
 }
+
+#pragma region  Hide Codes
 
 template<typename T>
 constexpr T pi = T(3.1415926535897932385L);
@@ -693,3 +725,97 @@ void STLIterators_RandomAccesIterators() {
     message("element end - 3", *it1);
 }
 
+#pragma endregion
+
+template <typename T>
+class accum {
+    T _acc = 0;
+    accum() {}
+public:
+    accum(T n) : _acc(n) {}
+    T operator() (T y) { _acc += y; return _acc; }
+};
+
+template <typename T>
+void disp_v(vector<T>& v) {
+    if (!v.size()) return;
+    for (T e : v) { cout << e << " "; }
+    cout << endl;
+}
+
+void Transformations_Transform() {
+    accum<int> x(7);
+    cout << x(7) << endl;
+
+    vector<int> v1 = { 1, 2, 3, 4, 5 };
+    disp_v(v1);
+
+    vector<int> v2(v1.size());
+    transform(v1.begin(), v1.end(), v2.begin(), x);
+
+    disp_v(v2);
+}
+
+ostream& operator << (ostream& o, const Rational& r) {
+    return o << string(r);
+}
+
+void Transformations_Transform2() {
+    accum<Rational> x(Rational(3, 5));
+    cout << x(7) << endl;
+
+    vector<Rational> v1 = { 1, 2, 3, 4, 5 };
+    disp_v(v1);
+
+    vector<Rational> v2(v1.size());
+    transform(v1.begin(), v1.end(), v2.begin(), x);
+
+    disp_v(v2);
+}
+
+size_t strsz(string & s) {
+    return s.size();
+}
+
+void Transformations_LambdaTransform() {
+    int accum = 14;
+    //auto x = [accum](int d) mutable -> int { return accum += d; };
+
+    vector<int> v1 = { 1, 2, 3, 4, 5 };
+    disp_v(v1);
+
+    vector<int> v2(v1.size());
+    //transform(v1.begin(), v1.end(), v2.begin(), x);
+    transform(v1.begin(), v1.end(), v2.begin(), [accum](int d) mutable -> int 
+        { 
+            return accum += d; 
+        }
+    );
+
+    disp_v(v2);
+
+    vector<string> v1_str = { "one", "two", "three", "four", "five"};
+    disp_v(v1_str);
+
+    vector<size_t> v2_str(v1_str.size());
+    /*transform(v1_str.begin(), v1_str.end(), v2_str.begin(), [](string & s) -> size_t
+        {
+            return s.size();
+        }
+    );*/
+    transform(v1_str.begin(), v1_str.end(), v2_str.begin(), strsz);
+
+    disp_v(v2);
+}
+
+void Transformations_StringsTransform() {
+
+}
+
+void Transformations_BinaryTransform() {
+
+}
+
+void Transformations_TypesTransform() {
+
+}
