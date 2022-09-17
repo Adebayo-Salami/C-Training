@@ -14,6 +14,8 @@
 #include <set>
 #include <unordered_set>
 #include <map>
+#include <iterator>
+#include <forward_list>
 
 using namespace std;
 
@@ -28,6 +30,12 @@ void STLContainers_Queue();
 void STLContainers_Stack();
 void STLContainers_Sets();
 void STLContainers_Maps();
+void STLIterators_AccessingIterators();
+void STLIterators_InputIterators();
+void STLIterators_OutputIterators();
+void STLIterators_ForwardIterators();
+void STLIterators_BiDerectionalIterators();
+void STLIterators_RandomAccesIterators();
 
 int main()
 {
@@ -60,6 +68,24 @@ int main()
 
     printf("\n");
     STLContainers_Maps();
+
+    printf("\n");
+    STLIterators_AccessingIterators();
+
+    printf("\n");
+    STLIterators_InputIterators();
+
+    printf("\n");
+    STLIterators_OutputIterators();
+
+    printf("\n");
+    STLIterators_ForwardIterators();
+
+    printf("\n");
+    STLIterators_BiDerectionalIterators();
+
+    printf("\n");
+    STLIterators_RandomAccesIterators();
 }
 
 template<typename T>
@@ -552,5 +578,118 @@ void STLContainers_Maps() {
     }
     message("size", mapstr.size());
     print_map(mapstr);
+}
+
+void STLIterators_AccessingIterators() {
+    vector<int> vi1 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    vector<int>::iterator it1;   // iterator object
+
+    vector<int>::iterator ibegin = vi1.begin();
+    vector<int>::iterator iend = vi1.end();
+
+    for (it1 = ibegin; it1 < iend; ++it1) {
+        cout << *it1 << " ";
+    }
+    cout << endl;
+}
+
+void STLIterators_InputIterators() {
+    double d1 = 0, d2 = 0;
+
+    cout << "Two numeric values: " << flush;
+    cin.clear();
+    istream_iterator<double> eos;         // default constructor is end-of-stream
+    istream_iterator<double> iit(cin);    // stdin iterator
+
+    if (iit == eos) {
+        message("no values");
+        return;
+    }
+    else {
+        d1 = *iit++;
+    }
+
+    if (iit == eos) {
+        message("no second value");
+        return;
+    }
+    else {
+        d2 = *iit;
+    }
+
+    cin.clear();
+    cout << d1 << " * " << d2 << " = " << d1 * d2 << endl;
+}
+
+void STLIterators_OutputIterators() {
+    ostream_iterator<int> output(cout, " ");
+
+    for (int i : { 3, 197, 42 }) {
+        *output++ = i;
+    }
+    cout << endl;
+}
+
+void STLIterators_ForwardIterators() {
+    forward_list<int> fl1 = { 1, 2, 3, 4, 5 };
+    forward_list<int>::iterator it1;     // forward iterator
+
+    for (it1 = fl1.begin(); it1 != fl1.end(); ++it1) {
+        cout << *it1 << " ";
+    }
+    cout << endl;
+}
+
+void STLIterators_BiDerectionalIterators() {
+    set<int> set1 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    set<int>::iterator it1;   // iterator object
+
+    // iterate forward
+    for (it1 = set1.begin(); it1 != set1.end(); ++it1) {
+        cout << *it1 << " ";
+    }
+    cout << endl;
+
+    // iterate backward
+    for (it1 = set1.end(); it1 != set1.begin();) {
+        cout << *--it1 << " ";
+    }
+    cout << endl;
+
+    // range-based for loop
+    for (int i : set1) {
+        cout << i << " ";
+    }
+    cout << endl;
+}
+
+void STLIterators_RandomAccesIterators() {
+    vector<int> v1 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    vector<int>::iterator it1;   // iterator object
+
+    // iterate forward
+    for (it1 = v1.begin(); it1 != v1.end(); ++it1) {
+        cout << *it1 << " ";
+    }
+    cout << endl;
+
+    // iterate backward
+    for (it1 = v1.end(); it1 != v1.begin();) {
+        cout << *--it1 << " ";
+    }
+    cout << endl;
+
+    // range-based for loop
+    for (int i : v1) {
+        cout << i << " ";
+    }
+    cout << endl;
+
+    it1 = v1.begin() + 5;
+    message("element begin + 5", *it1);
+    message("element [5]", v1[5]);
+
+    it1 = v1.end() - 3;
+    message("element end - 3", *it1);
 }
 
