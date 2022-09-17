@@ -1113,7 +1113,8 @@ void STLAlgorithm_SearchingCounting() {
         cout << "not found" << endl;
     }
 
-    auto c = count(v1.begin(), v1.end(), 7);
+    //auto c = count(v1.begin(), v1.end(), 7);
+    auto c = count_if(v1.begin(), v1.end(), is_odd<int>);
     cout << "found " << c << " occurrences" << endl;
 }
 void STLAlgorithm_ReplacingRemoving() {
