@@ -201,7 +201,7 @@ void printv(const std::vector<T>& v) {
     if (v.empty()) return;
     for (const T & i : v)
         std::cout << i << " ";
-    std::endl;
+    std::cout << std::endl;
 }
 
 // print the elements of the tuple
@@ -306,19 +306,19 @@ void Templates() {
     std::cout << "type of z is " << typeid(z).name() << std::endl;
 
     std::vector<int> v1 = { 1,2,3,4,5 };
-    //printv(v1);     //Template Argument Deduction
+    printv(v1);     //Template Argument Deduction
     printv<int>(v1);
 }
 
 void STLContainers_Vector() {
-    std::vector<int> v1 = { 1,2,3,4,5 };
+    std::vector<int> v1 = { 1,2,3,4,5,6,7,8 };
     std::cout << "Elemet at 5 " << v1[5] << std::endl;
     v1.insert(v1.begin() + 5, 42);
     std::cout << "Elemet at 5 " << v1.at(5) << std::endl;
     v1.erase(v1.begin() + 5);
     v1.push_back(47);
     v1.pop_back();  // removed element at end of vector
-    v1.empty();
+    //v1.empty();
 
     std::vector<int> vx = { 1,2,3 };
     while (!vx.empty())
@@ -960,7 +960,7 @@ void STLFunctions_Arithmetic() {
     //minus<long> f;
     //multiplies<long> f;
     //divides<long> f;
-    modulus<long> f;
+    //modulus<long> f;
     negate<long> f_n;
     //transform(v1.begin(), v1.end(), v2.begin(), v3.begin(), f);
     transform(v1.begin(), v1.end(), v3.begin(), f_n);
@@ -1019,7 +1019,7 @@ void STLFunctions_Logical() {
     cout << endl;
 
     //logical_and<int> f;
-    logical_or<int> f;
+    //logical_or<int> f;
     logical_not<int> f_n;
     //transform(v1.begin(), v1.end(), v2.begin(), v3.begin(), f);
     transform(v1.begin(), v1.end(), v3.begin(), f_n);
@@ -1122,13 +1122,17 @@ void STLAlgorithm_ReplacingRemoving() {
     disp_v(v1);
 
     //replace(v1.begin(), v1.end(), 47, 99);
-    replace_if(v1.begin(), v1.end(), is_even<int>, 99);
-    auto it = remove(v1.begin(), v1.end(), 11);
+    //replace_if(v1.begin(), v1.end(), is_even<int>, 99);
+    //auto it = remove(v1.begin(), v1.end(), 11);
+    //auto it = remove_if(v1.begin(), v1.end(), is_even<int>);
+    auto it = unique(v1.begin(), v1.end());
     if (it == v1.end()) {
         cout << " no elements removed" << endl;
     }
     else {
-        v1.resize(it - v1.begin());
+        auto startIt = v1.begin();
+        auto newSize = it - startIt;
+        v1.resize(newSize);
     }
 
 
