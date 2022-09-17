@@ -1036,15 +1036,85 @@ void STLFunctions_Logical() {
 #pragma endregion
 
 void STLAlgorithm_Algorithm() {
+    int n = 42;
 
+    // prime numbers < 100, out of order
+    vector<int> v1 = { 71, 13, 59, 7, 53, 29, 3, 97, 5, 11, 17, 19, 23, 2, 31, 83, 37, 41, 89, 43, 47, 61, 67, 73, 79 };
+    disp_v(v1);
+
+    sort(v1.begin(), v1.end());
+    disp_v(v1);
+    if (binary_search(v1.begin(), v1.end(), n)) {
+        cout << "found " << n << endl;
+    }
+    else {
+        cout << "did not find " << n << endl;
+    }
+}
+
+template <typename T>
+const bool is_prime(const T& num) {
+    if (num <= 1) return false;
+    bool primeflag = true;
+    for (T l = 2; l < num; ++l) {
+        if (num % l == 0) {
+            primeflag = false;
+            break;
+        }
+    }
+    return primeflag;
 }
 
 void STLAlgorithm_Testing() {
+    // prime numbers < 100
+    const vector<int> v1 = { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97 };
+    disp_v(v1);
 
+    if (all_of(v1.begin(), v1.end(), is_prime<int>)) {
+        cout << "true" << endl;
+    }
+    else {
+        cout << "false" << endl;
+    }
+
+    const vector<int> v2 = { 1,4,6,8,9,10,12 };
+    //if (any_of(v2.begin(), v2.end(), is_prime<int>)) {
+    if (none_of(v2.begin(), v2.end(), is_prime<int>)) {
+        cout << "true" << endl;
+    }
+    else {
+        cout << "false" << endl;
+    }
+}
+
+template <typename T>
+bool is_odd(const T& n) {
+    return ((n % 2) == 1);
 }
 
 void STLAlgorithm_SearchingCounting() {
+    // prime numbers < 100
+    const vector<int> v1 = { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97 };
+    disp_v(v1);
 
+    const vector<int> v2 = { 31, 37, 41, 43, 47 };
+    disp_v(v2);
+
+    //auto it = find(v1.begin(), v1.end(), 41);
+    //auto it = find_if(v1.begin(), v1.end(), is_odd<int>);
+    //auto it = find_if_not(v1.begin(), v1.end(), is_odd<int>);
+    auto it = search(v1.begin(), v1.end(), v2.begin(), v2.end());
+
+    if (it != v1.end()) {
+        size_t index = it - v1.begin();
+        cout << "found at index " << index << ": " << *it << endl;
+    }
+    else {
+        cout << "not found" << endl;
+    }
+
+    auto c = count(v1.begin(), v1.end(), 7);
+    cout << "found " << c << " occurrences" << endl;
 }
 void STLAlgorithm_ReplacingRemoving() {
 
