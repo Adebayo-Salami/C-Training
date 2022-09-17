@@ -21,12 +21,18 @@
     <ClCompile Include="rational.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="numword.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="rational.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="title-case.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="numword.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -139,10 +139,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="numword.cpp" />
     <ClCompile Include="rational.cpp" />
     <ClCompile Include="Training3.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="numword.h" />
     <ClInclude Include="rational.h" />
     <ClInclude Include="title-case.h" />
   </ItemGroup>
