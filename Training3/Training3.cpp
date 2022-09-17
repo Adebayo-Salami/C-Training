@@ -18,6 +18,8 @@
 #include <forward_list>
 #include <algorithm>
 #include "rational.h"
+#include <locale>
+#include "title-case.h"
 
 using namespace std;
 
@@ -809,7 +811,16 @@ void Transformations_LambdaTransform() {
 }
 
 void Transformations_StringsTransform() {
+    string s1 = "this is a string";
+    cout << s1 << endl;
 
+    string s2(s1.size(), '.');
+    //transform(s1.begin(), s1.end(), s2.begin(), ::toupper);
+    //transform(s1.begin(), s1.end(), s2.begin(), title_case());
+    title_case t;
+    transform(s1.begin(), s1.end(), s2.begin(), t);
+
+    cout << s2 << endl;
 }
 
 void Transformations_BinaryTransform() {
