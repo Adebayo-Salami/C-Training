@@ -52,6 +52,15 @@ void STLFunctions_Functors();
 void STLFunctions_Arithmetic();
 void STLFunctions_Relational();
 void STLFunctions_Logical();
+void STLAlgorithm_Algorithm();
+void STLAlgorithm_Testing();
+void STLAlgorithm_SearchingCounting();
+void STLAlgorithm_ReplacingRemoving();
+void STLAlgorithm_ModifyingAlgo();
+void STLAlgorithm_Partitions();
+void STLAlgorithm_Sorting();
+void STLAlgorithm_MergingSequence();
+void STLAlgorithm_BinarySearches();
 
 int main()
 {
@@ -123,8 +132,6 @@ int main()
     printf("\n");
     Transformations_TypesTransform();
 
-#pragma endregion
-
     printf("\n");
     STLFunctions_Functors();
 
@@ -136,6 +143,35 @@ int main()
 
     printf("\n");
     STLFunctions_Logical();
+
+#pragma endregion
+
+    printf("\n");
+    STLAlgorithm_Algorithm();
+
+    printf("\n");
+    STLAlgorithm_Testing();
+
+    printf("\n");
+    STLAlgorithm_SearchingCounting();
+
+    printf("\n");
+    STLAlgorithm_ReplacingRemoving();
+
+    printf("\n");
+    STLAlgorithm_ModifyingAlgo();
+
+    printf("\n");
+    STLAlgorithm_Partitions();
+
+    printf("\n");
+    STLAlgorithm_Sorting();
+
+    printf("\n");
+    STLAlgorithm_MergingSequence();
+
+    printf("\n");
+    STLAlgorithm_BinarySearches();
 }
 
 #pragma region  Hide Codes
@@ -893,8 +929,6 @@ void Transformations_TypesTransform() {
     disp_v(words);
 }
 
-#pragma endregion
-
 template <typename T>
 class multiply_by {
     T _mult = 0;
@@ -982,6 +1016,7 @@ void disp_v(T& v) {
     for (auto e : v) { cout << e << " "; }
     cout << endl;
 }
+
 void STLFunctions_Logical() {
     vector<int> v1 = { 1, 0, 1, 0, 1, 0, 1, 0 };
     vector<int> v2 = { 1, 1, 1, 1, 0, 0, 0, 0 };
@@ -998,3 +1033,34 @@ void STLFunctions_Logical() {
     disp_v(v3);
 }
 
+#pragma endregion
+
+void STLAlgorithm_Algorithm() {
+
+}
+
+void STLAlgorithm_Testing() {
+
+}
+
+void STLAlgorithm_SearchingCounting() {
+
+}
+void STLAlgorithm_ReplacingRemoving() {
+
+}
+void STLAlgorithm_ModifyingAlgo() {
+
+}
+void STLAlgorithm_Partitions() {
+
+}
+void STLAlgorithm_Sorting() {
+
+}
+void STLAlgorithm_MergingSequence() {
+
+}
+void STLAlgorithm_BinarySearches() {
+
+}
