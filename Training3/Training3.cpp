@@ -48,6 +48,10 @@ void Transformations_LambdaTransform();
 void Transformations_StringsTransform();
 void Transformations_BinaryTransform();
 void Transformations_TypesTransform();
+void STLFunctions_Functors();
+void STLFunctions_Arithmetic();
+void STLFunctions_Relational();
+void STLFunctions_Logical();
 
 int main()
 {
@@ -98,8 +102,6 @@ int main()
     printf("\n");
     STLIterators_BiDerectionalIterators();
 
-#pragma endregion
-
     printf("\n");
     STLIterators_RandomAccesIterators();
 
@@ -120,6 +122,20 @@ int main()
 
     printf("\n");
     Transformations_TypesTransform();
+
+#pragma endregion
+
+    printf("\n");
+    STLFunctions_Functors();
+
+    printf("\n");
+    STLFunctions_Arithmetic();
+
+    printf("\n");
+    STLFunctions_Relational();
+
+    printf("\n");
+    STLFunctions_Logical();
 }
 
 #pragma region  Hide Codes
@@ -729,8 +745,6 @@ void STLIterators_RandomAccesIterators() {
     message("element end - 3", *it1);
 }
 
-#pragma endregion
-
 template <typename T>
 class accum {
     T _acc = 0;
@@ -877,5 +891,44 @@ void Transformations_TypesTransform() {
     vector<string> words(nums.size());
     transform(nums.begin(), nums.end(), words.begin(), nw);
     disp_v(words);
+}
+
+#pragma endregion
+
+template <typename T>
+class multiply_by {
+    T _mult = 0;
+    multiply_by();
+public:
+    multiply_by(T n) : _mult(n) {}
+    void mult(T n) { _mult = n; }
+    T mult() const { return _mult; }
+    T operator() (T n) const { return _mult * n; }
+};
+
+void STLFunctions_Functors() {
+    multiply_by<int> x(9);
+    cout << "x mult is " << x.mult() << endl;
+
+    cout << "x(5) is " << x(5) << endl;
+    cout << "x(25) is " << x(25) << endl;
+
+    x.mult(7);
+    cout << "x mult is " << x.mult() << endl;
+
+    cout << "x(5) is " << x(5) << endl;
+    cout << "x(25) is " << x(25) << endl;
+}
+
+void STLFunctions_Arithmetic() {
+
+}
+
+void STLFunctions_Relational() {
+
+}
+
+void STLFunctions_Logical() {
+
 }
 
