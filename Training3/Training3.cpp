@@ -21,6 +21,7 @@
 #include <locale>
 #include "title-case.h"
 #include <functional>
+#include <random>
 #include "numword.h"
 
 using namespace std;
@@ -61,6 +62,7 @@ void STLAlgorithm_Partitions();
 void STLAlgorithm_Sorting();
 void STLAlgorithm_MergingSequence();
 void STLAlgorithm_BinarySearches();
+void STLAlgorithm_ModifyingAlgoRandomize();
 
 int main()
 {
@@ -172,6 +174,9 @@ int main()
 
     printf("\n");
     STLAlgorithm_BinarySearches();
+
+    printf("\n");
+    STLAlgorithm_ModifyingAlgoRandomize();
 }
 
 #pragma region  Hide Codes
@@ -1140,11 +1145,56 @@ void STLAlgorithm_ReplacingRemoving() {
 }
 
 void STLAlgorithm_ModifyingAlgo() {
+    vector<int> v1 = { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97 };
+    vector<int> v2(v1.size(), 0);
+    disp_v(v1);
+    disp_v(v2);
 
+    copy(v1.begin(), v1.end(), v2.begin());
+    copy_n(v1.begin(), 15, v2.begin());
+    copy_backward(v1.begin(), v1.end(), v2.end());
+    reverse_copy(v1.begin(), v1.end(), v2.begin ());
+    fill(v1.begin(), v1.end() -10, 100);
+    fill_n(v1.begin(), 10, 100);
+    generate(v2.begin(), v2.end(), []() -> int { return rand() % 100; });
+    random_shuffle(v1.begin(), v1.end());
+    random_shuffle(v1.begin(), v1.end(), [](int i) -> int { return rand() % i; });
+    disp_v(v1);
+    disp_v(v2);
+}
+
+void STLAlgorithm_ModifyingAlgoRandomize() {
+    // prime numbers < 100
+    vector<int> v1 = { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97 };
+    disp_v(v1);
+
+    random_device rd;
+    mt19937 g(rd());
+
+    shuffle(v1.begin(), v1.end(), g);
+    disp_v(v1);
+}
+
+template <typename T>
+bool is_even_tens(T& n) {
+    if (n < 10) return false;
+    return ((n / 10) % 2) == 0;
 }
 
 void STLAlgorithm_Partitions() {
+    // prime numbers > 10 & < 100
+    vector<int> v1 = { 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97 };
+    disp_v(v1);
 
+    size_t sz = count_if(v1.begin(), v1.end(), is_even_tens<int>);
+    vector<int> v2(sz), v3(v1.size() - sz);
+
+    partition(v1.begin(), v1.end(), is_even_tens<int>);
+    stable_partition(v1.begin(), v1.end(), is_even_tens<int>);
+    partition_copy(v1.begin(), v1.end(), v2.begin(), v3.begin(), is_even_tens<int>);
+    disp_v(v1);
+    disp_v(v2);
+    disp_v(v3);
 }
 
 void STLAlgorithm_Sorting() {
