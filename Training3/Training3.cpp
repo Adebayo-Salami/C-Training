@@ -1197,14 +1197,99 @@ void STLAlgorithm_Partitions() {
     disp_v(v3);
 }
 
-void STLAlgorithm_Sorting() {
+template <typename T>
+bool mycomp(const T& lh, const T& rh) {
+    return lh < rh;
+    //return lh > rh;
+}
 
+void STLAlgorithm_Sorting() {
+    // prime numbers < 100
+    vector<int> v1 = { 83, 53, 47, 23, 13, 59, 29, 41, 19, 71, 31, 67, 11, 2, 97, 7, 61, 73, 3, 79, 37, 43, 17, 5, 89 };
+    vector<double> v2 = { 3.07, 2.49, 3.73, 6.58, 3.3, 2.72, 3.44, 8.78, 9.23, 4.09, 4.4, 1.65, 4.92, 0.42, 4.87, 5.03, 3.27, 7.29, 8.4, 6.12 };
+    disp_v(v1);
+    disp_v(v2);
+
+    sort(v1.begin(), v1.end());
+    sort(v1.begin(), v1.end(), mycomp<int>);
+    disp_v(v1);
+
+    StableSort();
+}
+
+template <typename T>
+bool mycomp(const T& lh, const T& rh) {
+    return int(lh) < int(rh);
+}
+
+void StableSort() {
+    vector<int> v1 = { 83, 53, 47, 23, 13, 59, 29, 41, 19, 71, 31, 67, 11, 2, 97, 7, 61, 73, 3, 79, 37, 43, 17, 5, 89 };
+    vector<double> v2 = { 3.07, 2.49, 3.73, 6.58, 3.3, 2.72, 3.44, 8.78, 9.23, 4.09, 4.4, 1.65, 4.92, 0.42, 4.87, 5.03, 3.27, 7.29, 8.4, 6.12 };
+    disp_v(v2);
+
+    vector<double> v3;
+
+    v3 = v2;
+    sort(v3.begin(), v3.end(), mycomp<double>);
+    disp_v(v3);
+
+    v3 = v2;
+    stable_sort(v3.begin(), v3.end(), mycomp<double>);
+    disp_v(v3);
+}
+
+// compare for reverse sort
+template <typename T>
+bool gtcomp(const T& lh, const T& rh) {
+    return lh > rh;
 }
 
 void STLAlgorithm_MergingSequence() {
+    vector<int> v1 = { 83, 53, 47, 23, 13, 59, 29, 41, 19, 71, 31, 67 };
+    vector<int> v2 = { 2, 97, 7, 61, 73, 3, 79, 37, 43, 17, 5, 89, 11 };
+    vector<int> v3(v1.size() + v2.size());
+    disp_v(v1);
+    disp_v(v2);
+    cout << endl;
 
+    sort(v1.begin(), v1.end());
+    sort(v1.begin(), v1.end(), gtcomp<int>);
+    sort(v2.begin(), v2.end());
+    sort(v2.begin(), v2.end(), gtcomp<int>);
+    disp_v(v1);
+    disp_v(v2);
+    cout << endl;
+
+    merge(v1.begin(), v1.end(), v2.begin(), v2.end(), v3.begin());
+    disp_v(v3);
 }
 
 void STLAlgorithm_BinarySearches() {
+    int n = 47;
 
+    // prime numbers < 100
+    vector<int> v1 = { 83, 53, 47, 23, 13, 59, 29, 41, 19, 71, 31, 67, 11, 2, 97, 7, 61, 73, 3, 79, 37, 43, 17, 5, 89 };
+    disp_v(v1);
+
+    sort(v1.begin(), v1.end());
+    disp_v(v1);
+
+    cout << "searching for " << n << " ... ";
+    if (binary_search(v1.begin(), v1.end(), n)) {
+        cout << "found ";
+    }
+    else {
+        cout << "not found";
+    }
+    cout << endl;
+
+    auto it = lower_bound(v1.begin(), v1.end(), n);
+    cout << "Lower bound: " << *it << endl;
+
+    it = upper_bound(v1.begin(), v1.end(), n);
+    cout << "Upper bound: " << *it << endl;
+
+    auto pr = equal_range(v1.begin(), v1.end(), n); //pair
+    cout << "Lower bound: " << *pr.first << endl;
+    cout << "Upper bound: " << *pr.second << endl;
 }
